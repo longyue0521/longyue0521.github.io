@@ -1,0 +1,7 @@
+[submodule "themes/even"]
+	path = themes/even
+	url = https://github.com/longyue0521/hugo-theme-even
+[submodule "public"]
+    path = ./
+    url = https://github.com/longyue0521/longyue0521.github.io.git
+    branch = main
