@@ -1,0 +1,710 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Hugo+Github+Github Action搭建个人博客 - Talent Is Enduring Patience</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="龍躍"><meta name=description content="使用Hugo+Github+Github Action构建个人技术博客，搭建技术博客的新方式！
+"><meta name=keywords content="Go,K8s,Docker"><meta name=generator content="Hugo 0.84.4 with theme even"><link rel=canonical href=https://longyue0521.github.io/post/using-hugo-github-and-github-action-to-build-blog/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="Hugo+Github+Github Action搭建个人博客"><meta property="og:description" content="
+使用Hugo+Github+Github Action构建个人技术博客，搭建技术博客的新方式！
+"><meta property="og:type" content="article"><meta property="og:url" content="https://longyue0521.github.io/post/using-hugo-github-and-github-action-to-build-blog/"><meta property="article:section" content="post"><meta property="article:published_time" content="2021-07-04T15:54:32+08:00"><meta property="article:modified_time" content="2021-07-04T15:54:32+08:00"><meta itemprop=name content="Hugo+Github+Github Action搭建个人博客"><meta itemprop=description content="
+使用Hugo+Github+Github Action构建个人技术博客，搭建技术博客的新方式！
+"><meta itemprop=datePublished content="2021-07-04T15:54:32+08:00"><meta itemprop=dateModified content="2021-07-04T15:54:32+08:00"><meta itemprop=wordCount content="4310"><meta itemprop=keywords content=",,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Hugo+Github+Github Action搭建个人博客"><meta name=twitter:description content="
+使用Hugo+Github+Github Action构建个人技术博客，搭建技术博客的新方式！
+"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>Go! Just for fun!</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>首页</li></a><a href=/categories/><li class=mobile-menu-item>分类</li></a><a href=/tags/><li class=mobile-menu-item>标签</li></a><a href=/post/><li class=mobile-menu-item>归档</li></a><a href=/about/><li class=mobile-menu-item>关于</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>Go! Just for fun!</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>首页</a></li><li class=menu-item><a class=menu-item-link href=/categories/>分类</a></li><li class=menu-item><a class=menu-item-link href=/tags/>标签</a></li><li class=menu-item><a class=menu-item-link href=/post/>归档</a></li><li class=menu-item><a class=menu-item-link href=/about/>关于</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>Hugo+Github+Github Action搭建个人博客</h1><div class=post-meta><span class=post-time>2021-07-04</span><div class=post-category><a href=/categories//></a><a href=/categories//></a></div><span class=more-meta>约 4310 字</span>
+<span class=more-meta>预计阅读 9 分钟</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>文章目录</h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><a href=#前期准备>前期准备</a><ul><li><a href=#hugo入门>Hugo入门</a></li><li><a href=#创建github远程库>创建Github远程库</a><ul><li><a href=#远程工作库>远程工作库</a></li><li><a href=#远程博客库>远程博客库</a></li></ul></li></ul></li><li><a href=#整体流程>整体流程</a><ul><li><a href=#托管本地工作区>托管本地工作区</a></li><li><a href=#关联远程工作库>关联远程工作库</a></li><li><a href=#自动化部署博客>自动化部署博客</a><ul><li><a href=#github-action>Github Action</a></li><li><a href=#跨库部署博客>跨库部署博客</a></li></ul></li></ul></li><li><a href=#配置博客>配置博客</a><ul><li><a href=#整体配置>整体配置</a></li><li><a href=#utterances评论>utterances评论</a></li></ul></li><li><a href=#reference>Reference</a></li></ul></nav></div></div><div class=post-content><div class="admonition danger"><p>使用Hugo+Github+Github Action构建个人技术博客，搭建技术博客的新方式！</p></div><h1 id=前期准备>前期准备</h1><h2 id=hugo入门>Hugo入门</h2><p>本小结利用hugo快速创建一个可以在本地运行的博客工作区
+​</p><ol><li>创建站点</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ hugo new site workspace
+</code></pre></td></tr></table></div></div><ol start=2><li>添加主题</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ <span class=nb>cd</span> workspace
+$ git clone https://github.com/olOwOlo/hugo-theme-even themes/even
+</code></pre></td></tr></table></div></div><ol start=3><li>拷贝配置</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># 当前目录为workspace</span>
+$ cp themes/even/exampleSite/config.toml .
+</code></pre></td></tr></table></div></div><ol start=4><li>添加文章</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># 当前目录为workspace</span>
+$ hugo new post/my-first-post.md
+</code></pre></td></tr></table></div></div><ol start=5><li>修改文章</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># 当前目录为workspace</span>
+$ vim content/post/my-first-post.md
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>---
+title: &#34;My First Post&#34;
+date: 2019-03-26T08:47:11+01:00
+draft: true
+---
+This is my first post!
+</code></pre></td></tr></table></div></div><ol start=6><li>生成文件</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># 当前目录为workspace</span>
+$ hugo server -D
+</code></pre></td></tr></table></div></div><ol start=7><li>查看站点</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>http://localhost:1313/
+</code></pre></td></tr></table></div></div><p><a href=http://localhost:1313/></a></p><h2 id=创建github远程库>创建Github远程库</h2><p>我们需要两个Github库，一个私有库及一个公有库。</p><h3 id=远程工作库>远程工作库</h3><p>如下图所示，创建一个<strong>私有</strong>Github库用于<strong>存放博客的所有资源（源文件、图片等）</strong>。</p><p><img src=/images/remote-workspace.png alt=创建远程工作库></p><div class="admonition warning"><p class=admonition-title>注意</p><p>图中的库名并不重要，下文使用<strong>远程工作库</strong>指代该私有Github库。</p></div><h3 id=远程博客库>远程博客库</h3><p>其本质就是Github Pages库，库名格式必须符合<code>&lt;username>.github.io</code>要求且必须为<strong>公有库</strong>。</p><p><img src=/images/github-pages-repo.png alt=创建远程博客库></p><div class="admonition warning"><p class=admonition-title>注意</p><p>库名很重要，务必把<code>username</code>替换为你的Github用户名。下文使用<strong>远程博客库</strong>指代该Github库。</p></div><h1 id=整体流程>整体流程</h1><p><img src=/images/github-ci-cd-overview.png alt=整体流程图></p><ol><li>使用Git托管Hugo工作区，使其成为<strong>本地工作库</strong>。</li><li>借助Git将<strong>本地工作库</strong>与<strong>远程工作库</strong>关联。</li><li>利用Github Action实现博客自动化发布到<strong>远程博客库</strong>。<ul><li>将<strong>本地工作库</strong>推送到<strong>远程工作库</strong>触发Github Action工作流。</li><li>在Github Action工作流中生成博客文章并部署到<strong>远程博客库</strong>。</li></ul></li></ol><h2 id=托管本地工作区>托管本地工作区</h2><ol><li>使用git将本地工作区变为本地工作库</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ <span class=nb>cd</span> workspace
+$ git init
+</code></pre></td></tr></table></div></div><ol start=2><li>将主题重新以git子模块的方式添加</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ rm -rf themes/even
+$ git submodule add https://github.com/olOwOlo/hugo-theme-even themes/even
+</code></pre></td></tr></table></div></div><ol start=3><li>创建本地工作库的main分支</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ git add .
+$ git commit -m <span class=s2>&#34;init git workspace&#34;</span>
+</code></pre></td></tr></table></div></div><h2 id=关联远程工作库>关联远程工作库</h2><ol><li>关联本地工作库与远程工作库</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># 关联本地与远程工作库</span>
+$ git remote add origin https://github.com/longyue0521/workspace
+
+<span class=c1># 设置本地库main分支追踪远程库main分支</span>
+$ git branch --set-upstream-to<span class=o>=</span>origin/main main
+
+<span class=c1># 查看远程工作库</span>
+$ git remote -v
+</code></pre></td></tr></table></div></div><ol start=2><li>同步本地工作库与远程工作库</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># 将远程工作区内容拉到本地</span>
+$ git pull --rebase origin main
+
+<span class=c1># 来自 https://github.com/longyue0521/workspace</span>
+<span class=c1># * branch            main       -&gt; FETCH_HEAD</span>
+<span class=c1># 成功变基并更新 refs/heads/main</span>
+
+<span class=c1># 将本地工作库内容推到远程</span>
+$ git push
+
+<span class=c1># 或者使用下面的命令推送并关联</span>
+$ git push --set-upstream origin main
+</code></pre></td></tr></table></div></div><h2 id=自动化部署博客>自动化部署博客</h2><h3 id=github-action>Github Action</h3><p>为<strong>本地工作库</strong>添加<a href=https://docs.github.com/en/actions>Github Action工作流</a>的方法很简单，只需要在<strong>本地工作库</strong>的<code>.github/workflows</code>目录下添加格式为YAML的文件即可。</p><p>创建目录并添加配置文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>$ <span class=nb>cd</span> workspace
+$ mkdir -p .github/workflows
+$ vim .github/workflows/gh-pages.yml
+</code></pre></td></tr></table></div></div><p>向<code>gh-pages.yml</code>添加如下内容</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-yaml data-lang=yaml><span class=c># Workflow to build and deploy site to Github Pages using Hugo</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=c># Name of Workflow</span><span class=w>
+</span><span class=w></span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Github Pages Deploy</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=c># Controls when the action will run. Triggers the workflow on main request</span><span class=w>
+</span><span class=w></span><span class=c># events but only for the master branch</span><span class=w>
+</span><span class=w></span><span class=nt>on</span><span class=p>:</span><span class=w>
+</span><span class=w>  </span><span class=nt>push</span><span class=p>:</span><span class=w>
+</span><span class=w>    </span><span class=nt>branches</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span>- <span class=l>main</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=c># A workflow run is made up of one or more jobs that can run sequentially or in parallel</span><span class=w>
+</span><span class=w></span><span class=nt>jobs</span><span class=p>:</span><span class=w>
+</span><span class=w>  </span><span class=c># This workflow contains a single job called &#34;deploy&#34;</span><span class=w>
+</span><span class=w>  </span><span class=nt>deploy</span><span class=p>:</span><span class=w>
+</span><span class=w>    </span><span class=c># The type of runner that the job will run on</span><span class=w>
+</span><span class=w>    </span><span class=nt>runs-on</span><span class=p>:</span><span class=w> </span><span class=l>ubuntu-latest</span><span class=w>
+</span><span class=w>
+</span><span class=w>    </span><span class=c># Steps represent a sequence of tasks that will be executed as part of the job</span><span class=w>
+</span><span class=w>    </span><span class=nt>steps</span><span class=p>:</span><span class=w>
+</span><span class=w>
+</span><span class=w>    </span><span class=c># Step 1 - Checks-out your repository under $GITHUB_WORKSPACE</span><span class=w>
+</span><span class=w>    </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Checkout</span><span class=w>
+</span><span class=w>      </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/checkout@v2</span><span class=w>
+</span><span class=w>      </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span><span class=w>          </span><span class=nt>submodules</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>  </span><span class=c># Fetch Hugo themes</span><span class=w>
+</span><span class=w>          </span><span class=nt>fetch-depth</span><span class=p>:</span><span class=w> </span><span class=m>0</span><span class=w>    </span><span class=c># Fetch all history for .GitInfo and .Lastmod</span><span class=w>
+</span><span class=w>
+</span><span class=w>    </span><span class=c># Step 2 - Sets up the latest version of Hugo</span><span class=w>
+</span><span class=w>    </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Setup Hugo</span><span class=w>
+</span><span class=w>      </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>peaceiris/actions-hugo@v2</span><span class=w>
+</span><span class=w>      </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span><span class=w>          </span><span class=nt>hugo-version</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;latest&#39;</span><span class=w>
+</span><span class=w>          </span><span class=nt>extended</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span><span class=w>
+</span><span class=w>    </span><span class=c># Step 3 - Clean and don&#39;t fail</span><span class=w>
+</span><span class=w>    </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Clean public directory</span><span class=w>
+</span><span class=w>      </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=l>rm -rf public</span><span class=w>
+</span><span class=w>
+</span><span class=w>    </span><span class=c># Step 4 - Builds the site using the latest version of Hugo</span><span class=w>
+</span><span class=w>    </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Builds site</span><span class=w>
+</span><span class=w>      </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=l>hugo --minify</span><span class=w>
+</span><span class=w>
+</span><span class=w>    </span><span class=c># Step 5 - Create README file</span><span class=w>
+</span><span class=w>    </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Create README file</span><span class=w>
+</span><span class=w>      </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=l>cp gojustfor.fun.md public/README.md</span><span class=w>
+</span><span class=w>
+</span><span class=w>    </span><span class=c># Step 6 - Push our generated site to Github Pages Repo</span><span class=w>
+</span><span class=w>    </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Deploy it!</span><span class=w>
+</span><span class=w>      </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>peaceiris/actions-gh-pages@v3</span><span class=w>
+</span><span class=w>      </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span><span class=w>        </span><span class=nt>deploy_key</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.GP_ACTIONS_DEPLOY_KEY }}</span><span class=w>
+</span><span class=w>        </span><span class=nt>external_repository</span><span class=p>:</span><span class=w> </span><span class=l>longyue0521/longyue0521.github.io</span><span class=w>
+</span><span class=w>        </span><span class=nt>publish_branch</span><span class=p>:</span><span class=w> </span><span class=l>main</span><span class=w>
+</span><span class=w>        </span><span class=nt>publish_dir</span><span class=p>:</span><span class=w> </span><span class=l>./public</span><span class=w>
+</span><span class=w>        </span><span class=c>#cname: gojustfor.fun</span><span class=w>
+</span></code></pre></td></tr></table></div></div><ul><li>第4行，定义了工作流名。</li><li>第8——11行，将<strong>本地工作库</strong>main分支推送到<strong>远程工作库</strong>时触发第14行定义的工作。</li><li>第16行，定义了一个名为<strong>deploy</strong>的工作。<ul><li>该工作运行在<code>ubuntu-latest</code>上</li><li>第一步，检出<strong>远程工作库</strong>，即上面<code>gh-pages.yml</code>所在私有Github库。</li><li>第二步，安装Hugo</li><li>第三步，清理博客文件</li><li>第四步，生成博客文件</li><li>第五步，拷贝README，可选</li><li>第六步，将博客文件部署到<strong>远程博客库</strong></li></ul></li></ul><h3 id=跨库部署博客>跨库部署博客</h3><p>跨库部署的关键步骤定义在<code>gh-pages.yml</code>中，详解如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-yaml data-lang=yaml><span class=c># Step 6 - Push our generated site to Github Pages Repo</span><span class=w>
+</span><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Deploy it!</span><span class=w>
+</span><span class=w>      </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>peaceiris/actions-gh-pages@v3</span><span class=w>
+</span><span class=w>      </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span><span class=w>        </span><span class=nt>deploy_key</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.GP_ACTIONS_DEPLOY_KEY }}</span><span class=w>
+</span><span class=w>        </span><span class=nt>external_repository</span><span class=p>:</span><span class=w> </span><span class=l>longyue0521/longyue0521.github.io</span><span class=w>
+</span><span class=w>        </span><span class=nt>publish_branch</span><span class=p>:</span><span class=w> </span><span class=l>main</span><span class=w>
+</span><span class=w>        </span><span class=nt>publish_dir</span><span class=p>:</span><span class=w> </span><span class=l>./public</span><span class=w>
+</span></code></pre></td></tr></table></div></div><ul><li>这是一个名为<code>Deploy it!</code>的步骤</li><li>使用另一个Github Action工作流<code>peaceiris/actions-gh-pages@v3</code></li><li>用<code>deploy_key</code>将<strong>当前库</strong><code>publish_dir</code>目录下的内容部署到<code>external_repository</code>库的<code>publish_branch</code>分支。</li></ul><p>由此可见<code>deploy_key</code>是跨库部署的关键，这与用git通过SSH Key推送代码到Github库相类似。</p><ol><li>本地生成密钥对</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ ssh-keygen -t rsa -b <span class=m>4096</span> -C <span class=s2>&#34;</span><span class=k>$(</span>git config user.email<span class=k>)</span><span class=s2>&#34;</span> -f gh-pages -N <span class=s2>&#34;&#34;</span>
+<span class=c1># You will get 2 files:</span>
+<span class=c1>#   gh-pages.pub (public key)</span>
+<span class=c1>#   gh-pages     (private key)</span>
+</code></pre></td></tr></table></div></div><p>得到公钥<code>gh-pages.pub</code>和私钥<code>gh-pages</code>。
+​</p><ol start=2><li>配置远程工作库</li></ol><p>如下图所示，将<code>gh-pages</code>私钥内容添加到<strong>远程工作库</strong>，添加路径为<code>Settings > Secrets > New secret</code>。</p><p><img src=/images/private_ssh_key.png alt=用私钥配置工作库>​</p><div class="admonition warning"><p class=admonition-title>注意</p><p>密钥名应为<code>GP_ACTIONS_DEPLOY_KEY</code>与上文的<code>${{ secrets.GP_ACTIONS_DEPLOY_KEY }}</code>对应</p></div><ol start=3><li>配置远程博客库</li></ol><p>如下图所示，将<code>gh-pages.pub</code>公钥内容添加到<strong>远程博客库</strong>，添加路径为<code>Settings > Deploy keys > Add deploy key</code>。</p><p><img src=/images/public_ssh_key.png alt=用公钥配置博客库></p><div class="admonition warning"><p class=admonition-title>注意</p><p>注意添加路径，并勾选 <code>Allow write access</code></p></div><h1 id=配置博客>配置博客</h1><h2 id=整体配置>整体配置</h2><p>下面以<a href=https://github.com/olOwOlo/hugo-theme-even>Even</a>主题为例</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span><span class=lnt>136
+</span><span class=lnt>137
+</span><span class=lnt>138
+</span><span class=lnt>139
+</span><span class=lnt>140
+</span><span class=lnt>141
+</span><span class=lnt>142
+</span><span class=lnt>143
+</span><span class=lnt>144
+</span><span class=lnt>145
+</span><span class=lnt>146
+</span><span class=lnt>147
+</span><span class=lnt>148
+</span><span class=lnt>149
+</span><span class=lnt>150
+</span><span class=lnt>151
+</span><span class=lnt>152
+</span><span class=lnt>153
+</span><span class=lnt>154
+</span><span class=lnt>155
+</span><span class=lnt>156
+</span><span class=lnt>157
+</span><span class=lnt>158
+</span><span class=lnt>159
+</span><span class=lnt>160
+</span><span class=lnt>161
+</span><span class=lnt>162
+</span><span class=lnt>163
+</span><span class=lnt>164
+</span><span class=lnt>165
+</span><span class=lnt>166
+</span><span class=lnt>167
+</span><span class=lnt>168
+</span><span class=lnt>169
+</span><span class=lnt>170
+</span><span class=lnt>171
+</span><span class=lnt>172
+</span><span class=lnt>173
+</span><span class=lnt>174
+</span><span class=lnt>175
+</span><span class=lnt>176
+</span><span class=lnt>177
+</span><span class=lnt>178
+</span><span class=lnt>179
+</span><span class=lnt>180
+</span><span class=lnt>181
+</span><span class=lnt>182
+</span><span class=lnt>183
+</span><span class=lnt>184
+</span><span class=lnt>185
+</span><span class=lnt>186
+</span><span class=lnt>187
+</span><span class=lnt>188
+</span><span class=lnt>189
+</span><span class=lnt>190
+</span><span class=lnt>191
+</span><span class=lnt>192
+</span><span class=lnt>193
+</span><span class=lnt>194
+</span><span class=lnt>195
+</span><span class=lnt>196
+</span><span class=lnt>197
+</span><span class=lnt>198
+</span><span class=lnt>199
+</span><span class=lnt>200
+</span><span class=lnt>201
+</span><span class=lnt>202
+</span><span class=lnt>203
+</span><span class=lnt>204
+</span><span class=lnt>205
+</span><span class=lnt>206
+</span><span class=lnt>207
+</span><span class=lnt>208
+</span><span class=lnt>209
+</span><span class=lnt>210
+</span><span class=lnt>211
+</span><span class=lnt>212
+</span><span class=lnt>213
+</span><span class=lnt>214
+</span><span class=lnt>215
+</span><span class=lnt>216
+</span><span class=lnt>217
+</span><span class=lnt>218
+</span><span class=lnt>219
+</span><span class=lnt>220
+</span><span class=lnt>221
+</span><span class=lnt>222
+</span><span class=lnt>223
+</span><span class=lnt>224
+</span><span class=lnt>225
+</span><span class=lnt>226
+</span><span class=lnt>227
+</span><span class=lnt>228
+</span><span class=lnt>229
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-yaml data-lang=yaml><span class=l>baseURL = &#34;https://longyue0521.github.io&#34;</span><span class=w>
+</span><span class=w></span><span class=l>languageCode = &#34;zh-cn&#34;</span><span class=w>
+</span><span class=w></span><span class=l>defaultContentLanguage = &#34;zh-cn&#34;                            </span><span class=w> </span><span class=c># en / zh-cn / ... (This field determines which i18n file to use)</span><span class=w>
+</span><span class=w></span><span class=l>title = &#34;Talent Is Enduring Patience&#34;</span><span class=w>
+</span><span class=w></span><span class=l>preserveTaxonomyNames = true</span><span class=w>
+</span><span class=w></span><span class=l>enableRobotsTXT = true</span><span class=w>
+</span><span class=w></span><span class=l>enableEmoji = true</span><span class=w>
+</span><span class=w></span><span class=l>theme = &#34;even&#34;</span><span class=w>
+</span><span class=w></span><span class=l>enableGitInfo = false # use git commit log to generate lastmod record</span><span class=w> </span><span class=c># 可根据 Git 中的提交生成最近更新记录。</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=c># Syntax highlighting by Chroma. NOTE: Don&#39;t enable `highlightInClient` and `chroma` at the same time!</span><span class=w>
+</span><span class=w></span><span class=l>pygmentsOptions = &#34;linenos=table&#34;</span><span class=w>
+</span><span class=w></span><span class=l>pygmentsCodefences = true</span><span class=w>
+</span><span class=w></span><span class=l>pygmentsUseClasses = true</span><span class=w>
+</span><span class=w></span><span class=l>pygmentsCodefencesGuessSyntax = true</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=l>hasCJKLanguage = true     # has chinese/japanese/korean ?</span><span class=w> </span><span class=c># 自动检测是否包含 中文\日文\韩文</span><span class=w>
+</span><span class=w></span><span class=l>paginate = 5                                             </span><span class=w> </span><span class=c># 首页每页显示的文章数</span><span class=w>
+</span><span class=w></span><span class=l>disqusShortname = &#34;&#34; # &#34;outofmemory-me&#34;     </span><span class=w> </span><span class=c># disqus_shortname</span><span class=w>
+</span><span class=w></span><span class=l>googleAnalytics = &#34;&#34;     </span><span class=w> </span><span class=c># UA-XXXXXXXX-X</span><span class=w>
+</span><span class=w></span><span class=l>copyright = &#34;&#34;            # default: author.name ↓       </span><span class=w> </span><span class=c># 默认为下面配置的author.name ↓</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=p>[</span><span class=l>author]                  # essential                    </span><span class=w> </span><span class=c># 必需</span><span class=w>
+</span><span class=w>  </span><span class=l>name = &#34;龍躍&#34;</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=p>[</span><span class=l>sitemap]                 # essential                    </span><span class=w> </span><span class=c># 必需</span><span class=w>
+</span><span class=w>  </span><span class=l>changefreq = &#34;weekly&#34;</span><span class=w>
+</span><span class=w>  </span><span class=l>priority = 0.5</span><span class=w>
+</span><span class=w>  </span><span class=l>filename = &#34;sitemap.xml&#34;</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=p>[[</span><span class=l>menu.main]]             # config your menu             </span><span class=w> </span><span class=c># 配置目录</span><span class=w>
+</span><span class=w>  </span><span class=l>name = &#34;首页&#34;</span><span class=w> </span><span class=c>#&#34;Home&#34;</span><span class=w>
+</span><span class=w>  </span><span class=l>weight = 10</span><span class=w>
+</span><span class=w>  </span><span class=l>identifier = &#34;home&#34;</span><span class=w>
+</span><span class=w>  </span><span class=l>url = &#34;/&#34;</span><span class=w>
+</span><span class=w></span><span class=p>[[</span><span class=l>menu.main]]</span><span class=w>
+</span><span class=w>  </span><span class=l>name = &#34;归档&#34;</span><span class=w> </span><span class=c>#&#34;Archives&#34;</span><span class=w>
+</span><span class=w>  </span><span class=l>weight = 40</span><span class=w>
+</span><span class=w>  </span><span class=l>identifier = &#34;archives&#34;</span><span class=w>
+</span><span class=w>  </span><span class=l>url = &#34;/post/&#34;</span><span class=w>
+</span><span class=w></span><span class=p>[[</span><span class=l>menu.main]]</span><span class=w>
+</span><span class=w>  </span><span class=l>name = &#34;标签&#34;</span><span class=w> </span><span class=c>#&#34;Tags&#34;</span><span class=w>
+</span><span class=w>  </span><span class=l>weight = 30</span><span class=w>
+</span><span class=w>  </span><span class=l>identifier = &#34;tags&#34;</span><span class=w>
+</span><span class=w>  </span><span class=l>url = &#34;/tags/&#34;</span><span class=w>
+</span><span class=w></span><span class=p>[[</span><span class=l>menu.main]]</span><span class=w>
+</span><span class=w>  </span><span class=l>name = &#34;分类&#34;</span><span class=w> </span><span class=c>#&#34;Categories&#34;</span><span class=w>
+</span><span class=w>  </span><span class=l>weight = 20</span><span class=w>
+</span><span class=w>  </span><span class=l>identifier = &#34;categories&#34;</span><span class=w>
+</span><span class=w>  </span><span class=l>url = &#34;/categories/&#34;</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=p>[</span><span class=l>params]</span><span class=w>
+</span><span class=w>  </span><span class=l>version = &#34;4.x&#34;          </span><span class=w> </span><span class=c># Used to give a friendly message when you have an incompatible update</span><span class=w>
+</span><span class=w>  </span><span class=l>debug = false            </span><span class=w> </span><span class=c># If true, load `eruda.min.js`. See https://github.com/liriliri/eruda</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=l>since = &#34;2017&#34;            # Site creation time         </span><span class=w> </span><span class=c># 站点建立时间</span><span class=w>
+</span><span class=w>  </span><span class=c># use public git repo url to link lastmod git commit, enableGitInfo should be true.</span><span class=w>
+</span><span class=w>  </span><span class=c># 指定 git 仓库地址，可以生成指向最近更新的 git commit 的链接，需要将 enableGitInfo 设置成 true.</span><span class=w>
+</span><span class=w>  </span><span class=l>gitRepo = &#34;&#34;</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=c># site info (optional)                                  # 站点信息（可选，不需要的可以直接注释掉）</span><span class=w>
+</span><span class=w>  </span><span class=l>logoTitle = &#34;Go! Just for fun!&#34;        # default: the title value   </span><span class=w> </span><span class=c># 默认值: 上面设置的title值</span><span class=w>
+</span><span class=w>  </span><span class=l>keywords = [&#34;Go&#34;, &#34;K8s&#34;,&#34;Docker&#34;]</span><span class=w>
+</span><span class=w>  </span><span class=l>description = &#34;Talent Is Enduring Patience | Just For Fun&#34;</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=c># paginate of archives, tags and categories             # 归档、标签、分类每页显示的文章数目，建议修改为一个较大的值</span><span class=w>
+</span><span class=w>  </span><span class=l>archivePaginate = 50</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=c># show &#39;xx Posts In Total&#39; in archive page ?            # 是否在归档页显示文章的总数</span><span class=w>
+</span><span class=w>  </span><span class=l>showArchiveCount = true</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=c># The date format to use; for a list of valid formats, see https://gohugo.io/functions/format/</span><span class=w>
+</span><span class=w>  </span><span class=l>dateFormatToUse = &#34;2006-01-02&#34;</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=c># show word count and read time ?                       # 是否显示字数统计与阅读时间</span><span class=w>
+</span><span class=w>  </span><span class=l>moreMeta = true</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=c># Syntax highlighting by highlight.js</span><span class=w>
+</span><span class=w>  </span><span class=l>highlightInClient = false</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=c># 一些全局开关，你也可以在每一篇内容的 front matter 中针对单篇内容关闭或开启某些功能，在 archetypes/default.md 查看更多信息。</span><span class=w>
+</span><span class=w>  </span><span class=c># Some global options, you can also close or open something in front matter for a single post, see more information from `archetypes/default.md`.</span><span class=w>
+</span><span class=w>  </span><span class=l>toc = true                                                                           </span><span class=w> </span><span class=c># 是否开启目录</span><span class=w>
+</span><span class=w>  </span><span class=l>autoCollapseToc = false   # Auto expand and collapse toc                             </span><span class=w> </span><span class=c># 目录自动展开/折叠</span><span class=w>
+</span><span class=w>  </span><span class=l>fancybox = true           # see https://github.com/fancyapps/fancybox                </span><span class=w> </span><span class=c># 是否启用fancybox（图片可点击）</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=c># mathjax</span><span class=w>
+</span><span class=w>  </span><span class=l>mathjax = false           # see https://www.mathjax.org/                             </span><span class=w> </span><span class=c># 是否使用mathjax（数学公式）</span><span class=w>
+</span><span class=w>  </span><span class=l>mathjaxEnableSingleDollar = false                                                    </span><span class=w> </span><span class=c># 是否使用 $...$ 即可進行inline latex渲染</span><span class=w>
+</span><span class=w>  </span><span class=l>mathjaxEnableAutoNumber = false                                                      </span><span class=w> </span><span class=c># 是否使用公式自动编号</span><span class=w>
+</span><span class=w>  </span><span class=l>mathjaxUseLocalFiles = false </span><span class=w> </span><span class=c># You should install mathjax in `your-site/static/lib/mathjax`</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=l>postMetaInFooter = true   # contain author, lastMod, markdown link, license          </span><span class=w> </span><span class=c># 包含作者，上次修改时间，markdown链接，许可信息</span><span class=w>
+</span><span class=w>  </span><span class=l>linkToMarkDown = true    # Only effective when hugo will output .md files.          </span><span class=w> </span><span class=c># 链接到markdown原始文件（仅当允许hugo生成markdown文件时有效）</span><span class=w>
+</span><span class=w>  </span><span class=l>contentCopyright = &#39;&lt;a rel=&#34;license noopener&#34; title=&#34;国际许可(CC BY-NC-SA 4.0)&#34;href=&#34;https://creativecommons.org/licenses/by-nc-sa/4.0/&#34; target=&#34;_blank&#34;&gt;&#34;署名-非商业性使用-相同方式共享 4.0 国际&#34;&lt;/a&gt; 转载请保留作者及原文链接&#39;    </span><span class=w> </span><span class=c># e.g. &#39;&lt;a rel=&#34;license noopener&#34; href=&#34;https://creativecommons.org/licenses/by-nc-nd/4.0/&#34; target=&#34;_blank&#34;&gt;CC BY-NC-ND 4.0&lt;/a&gt;&#39;</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=l>changyanAppid = &#34;&#34;        # Changyan app id            </span><span class=w> </span><span class=c># 畅言</span><span class=w>
+</span><span class=w>  </span><span class=l>changyanAppkey = &#34;&#34;      </span><span class=w> </span><span class=c># Changyan app key</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=l>livereUID = &#34;&#34;            # LiveRe UID                 </span><span class=w> </span><span class=c># 来必力</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=l>baiduPush = false        # baidu push                 </span><span class=w> </span><span class=c># 百度</span><span class=w>
+</span><span class=w>  </span><span class=l>baiduAnalytics = &#34;&#34;     </span><span class=w> </span><span class=c># Baidu Analytics</span><span class=w>
+</span><span class=w>  </span><span class=l>baiduVerification = &#34;&#34;  </span><span class=w> </span><span class=c># Baidu Verification</span><span class=w>
+</span><span class=w>  </span><span class=l>googleVerification = &#34;&#34;  # Google Verification        </span><span class=w> </span><span class=c># 谷歌</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=c># Link custom CSS and JS assets</span><span class=w>
+</span><span class=w>  </span><span class=c>#   (relative to /static/css and /static/js respectively)</span><span class=w>
+</span><span class=w>  </span><span class=l>customCSS = []</span><span class=w>
+</span><span class=w>  </span><span class=l>customJS = []</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=l>uglyURLs = false         </span><span class=w> </span><span class=c># please keep same with uglyurls setting</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=p>[</span><span class=l>params.publicCDN]        # load these files from public cdn                         </span><span class=w> </span><span class=c># 启用公共CDN，需自行定义</span><span class=w>
+</span><span class=w>    </span><span class=l>enable = true</span><span class=w>
+</span><span class=w>    </span><span class=l>jquery = &#39;&lt;script src=&#34;https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js&#34; integrity=&#34;sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;&#39;</span><span class=w>
+</span><span class=w>    </span><span class=l>slideout = &#39;&lt;script src=&#34;https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js&#34; integrity=&#34;sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;&#39;</span><span class=w>
+</span><span class=w>    </span><span class=l>fancyboxJS = &#39;&lt;script src=&#34;https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js&#34; integrity=&#34;sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;&#39;</span><span class=w>
+</span><span class=w>    </span><span class=l>fancyboxCSS = &#39;&lt;link rel=&#34;stylesheet&#34; href=&#34;https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css&#34; integrity=&#34;sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=&#34; crossorigin=&#34;anonymous&#34;&gt;&#39;</span><span class=w>
+</span><span class=w>    </span><span class=l>timeagoJS = &#39;&lt;script src=&#34;https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js&#34; integrity=&#34;sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;&#39;</span><span class=w>
+</span><span class=w>    </span><span class=l>timeagoLocalesJS = &#39;&lt;script src=&#34;https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js&#34; integrity=&#34;sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;&#39;</span><span class=w>
+</span><span class=w>    </span><span class=l>flowchartDiagramsJS = &#39;&lt;script src=&#34;https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js&#34; integrity=&#34;sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt; &lt;script src=&#34;https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js&#34; integrity=&#34;sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;&#39;</span><span class=w>
+</span><span class=w>    </span><span class=l>sequenceDiagramsCSS = &#39;&lt;link rel=&#34;stylesheet&#34; href=&#34;https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css&#34; integrity=&#34;sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF&#34; crossorigin=&#34;anonymous&#34;&gt;&#39;</span><span class=w>
+</span><span class=w>    </span><span class=l>sequenceDiagramsJS = &#39;&lt;script src=&#34;https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js&#34; integrity=&#34;sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt; &lt;script src=&#34;https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js&#34; integrity=&#34;sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt; &lt;script src=&#34;https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js&#34; integrity=&#34;sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt; &lt;script src=&#34;https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js&#34; integrity=&#34;sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;&#39;</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=c># Display a message at the beginning of an article to warn the readers that it&#39;s content may be outdated.</span><span class=w>
+</span><span class=w>  </span><span class=c># 在文章开头显示提示信息，提醒读者文章内容可能过时。</span><span class=w>
+</span><span class=w>  </span><span class=p>[</span><span class=l>params.outdatedInfoWarning]</span><span class=w>
+</span><span class=w>    </span><span class=l>enable = false</span><span class=w>
+</span><span class=w>    </span><span class=l>hint = 30               # Display hint if the last modified time is more than these days ago.   </span><span class=w> </span><span class=c># 如果文章最后更新于这天数之前，显示提醒</span><span class=w>
+</span><span class=w>    </span><span class=l>warn = 180              # Display warning if the last modified time is more than these days ago.   </span><span class=w> </span><span class=c># 如果文章最后更新于这天数之前，显示警告</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=p>[</span><span class=l>params.gitment]         </span><span class=w> </span><span class=c># Gitment is a comment system based on GitHub issues. see https://github.com/imsun/gitment</span><span class=w>
+</span><span class=w>    </span><span class=l>owner = &#34;&#34;             </span><span class=w> </span><span class=c># Your GitHub ID</span><span class=w>
+</span><span class=w>    </span><span class=l>repo = &#34;&#34;              </span><span class=w> </span><span class=c># The repo to store comments</span><span class=w>
+</span><span class=w>    </span><span class=l>clientId = &#34;&#34;          </span><span class=w> </span><span class=c># Your client ID</span><span class=w>
+</span><span class=w>    </span><span class=l>clientSecret = &#34;&#34;      </span><span class=w> </span><span class=c># Your client secret</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=p>[</span><span class=l>params.utterances]      </span><span class=w> </span><span class=c># https://utteranc.es/</span><span class=w>
+</span><span class=w>    </span><span class=l>owner = &#34;longyue0521&#34;             </span><span class=w> </span><span class=c># Your GitHub ID</span><span class=w>
+</span><span class=w>    </span><span class=l>repo = &#34;longyue0521.github.io&#34;              </span><span class=w> </span><span class=c># The repo to store comments</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=p>[</span><span class=l>params.gitalk]          </span><span class=w> </span><span class=c># Gitalk is a comment system based on GitHub issues. see https://github.com/gitalk/gitalk</span><span class=w>
+</span><span class=w>    </span><span class=l>owner = &#34;&#34;             </span><span class=w> </span><span class=c># Your GitHub ID</span><span class=w>
+</span><span class=w>    </span><span class=l>repo = &#34;&#34;              </span><span class=w> </span><span class=c># The repo to store comments</span><span class=w>
+</span><span class=w>    </span><span class=l>clientId = &#34;&#34;          </span><span class=w> </span><span class=c># Your client ID</span><span class=w>
+</span><span class=w>    </span><span class=l>clientSecret = &#34;&#34;      </span><span class=w> </span><span class=c># Your client secret</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=c># Valine.</span><span class=w>
+</span><span class=w>  </span><span class=c># You can get your appid and appkey from https://leancloud.cn</span><span class=w>
+</span><span class=w>  </span><span class=c># more info please open https://valine.js.org</span><span class=w>
+</span><span class=w>  </span><span class=p>[</span><span class=l>params.valine]</span><span class=w>
+</span><span class=w>    </span><span class=l>enable = false</span><span class=w>
+</span><span class=w>    </span><span class=l>appId = &#39;你的appId&#39;</span><span class=w>
+</span><span class=w>    </span><span class=l>appKey = &#39;你的appKey&#39;</span><span class=w>
+</span><span class=w>    </span><span class=l>notify = false </span><span class=w> </span><span class=c># mail notifier , https://github.com/xCss/Valine/wiki</span><span class=w>
+</span><span class=w>    </span><span class=l>verify = false</span><span class=w> </span><span class=c># Verification code</span><span class=w>
+</span><span class=w>    </span><span class=l>avatar = &#39;mm&#39;</span><span class=w>
+</span><span class=w>    </span><span class=l>placeholder = &#39;说点什么吧...&#39;</span><span class=w>
+</span><span class=w>    </span><span class=l>visitor = false</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=p>[</span><span class=l>params.flowchartDiagrams]# see https://blog.olowolo.com/example-site/post/js-flowchart-diagrams/</span><span class=w>
+</span><span class=w>    </span><span class=l>enable = false</span><span class=w>
+</span><span class=w>    </span><span class=l>options = &#34;&#34;</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=p>[</span><span class=l>params.sequenceDiagrams]</span><span class=w> </span><span class=c># see https://blog.olowolo.com/example-site/post/js-sequence-diagrams/</span><span class=w>
+</span><span class=w>    </span><span class=l>enable = false</span><span class=w>
+</span><span class=w>    </span><span class=l>options = &#34;&#34;           </span><span class=w> </span><span class=c># default: &#34;{theme: &#39;simple&#39;}&#34;</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=p>[</span><span class=l>params.busuanzi]         # count web traffic by busuanzi                            </span><span class=w> </span><span class=c># 是否使用不蒜子统计站点访问量</span><span class=w>
+</span><span class=w>    </span><span class=l>enable = false</span><span class=w>
+</span><span class=w>    </span><span class=l>siteUV = true</span><span class=w>
+</span><span class=w>    </span><span class=l>sitePV = true</span><span class=w>
+</span><span class=w>    </span><span class=l>pagePV = true</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=p>[</span><span class=l>params.reward]                                        </span><span class=w> </span><span class=c># 文章打赏</span><span class=w>
+</span><span class=w>    </span><span class=l>enable = false</span><span class=w>
+</span><span class=w>    </span><span class=l>wechat = &#34;/path/to/your/wechat-qr-code.png&#34;          </span><span class=w> </span><span class=c># 微信二维码</span><span class=w>
+</span><span class=w>    </span><span class=l>alipay = &#34;/path/to/your/alipay-qr-code.png&#34;          </span><span class=w> </span><span class=c># 支付宝二维码</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=p>[</span><span class=l>params.social]                                        </span><span class=w> </span><span class=c># 社交链接</span><span class=w>
+</span><span class=w>    </span><span class=l>a-email = &#34;mailto:longyueli0521@gmail.com&#34;</span><span class=w>
+</span><span class=w>    </span><span class=c>#b-stack-overflow = &#34;http://localhost:1313&#34;</span><span class=w>
+</span><span class=w>    </span><span class=c>#c-twitter = &#34;http://localhost:1313&#34;</span><span class=w>
+</span><span class=w>    </span><span class=c>#d-facebook = &#34;http://localhost:1313&#34;</span><span class=w>
+</span><span class=w>    </span><span class=c>#e-linkedin = &#34;http://localhost:1313&#34;</span><span class=w>
+</span><span class=w>    </span><span class=c>#f-google = &#34;http://localhost:1313&#34;</span><span class=w>
+</span><span class=w>    </span><span class=l>g-github = &#34;http://github.com/longyue0521&#34;</span><span class=w>
+</span><span class=w>    </span><span class=l>h-weibo = &#34;https://weibo.com/longyue521&#34;</span><span class=w>
+</span><span class=w>    </span><span class=c>#i-zhihu = &#34;http://localhost:1313&#34;</span><span class=w>
+</span><span class=w>    </span><span class=c>#j-douban = &#34;http://localhost:1313&#34;</span><span class=w>
+</span><span class=w>    </span><span class=c>#k-pocket = &#34;http://localhost:1313&#34;</span><span class=w>
+</span><span class=w>    </span><span class=c>#l-tumblr = &#34;http://localhost:1313&#34;</span><span class=w>
+</span><span class=w>    </span><span class=c>#m-instagram = &#34;http://localhost:1313&#34;</span><span class=w>
+</span><span class=w>    </span><span class=c>#n-gitlab = &#34;http://localhost:1313&#34;</span><span class=w>
+</span><span class=w>    </span><span class=l>o-bilibili = &#34;https://space.bilibili.com/86465982&#34;</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=c># See https://gohugo.io/about/hugo-and-gdpr/</span><span class=w>
+</span><span class=w></span><span class=p>[</span><span class=l>privacy]</span><span class=w>
+</span><span class=w>  </span><span class=p>[</span><span class=l>privacy.googleAnalytics]</span><span class=w>
+</span><span class=w>    </span><span class=l>anonymizeIP = true     </span><span class=w> </span><span class=c># 12.214.31.144 -&gt; 12.214.31.0</span><span class=w>
+</span><span class=w>  </span><span class=p>[</span><span class=l>privacy.youtube]</span><span class=w>
+</span><span class=w>    </span><span class=l>privacyEnhanced = true</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=c># see https://gohugo.io/getting-started/configuration-markup</span><span class=w>
+</span><span class=w></span><span class=p>[</span><span class=l>markup]</span><span class=w>
+</span><span class=w>  </span><span class=p>[</span><span class=l>markup.tableOfContents]</span><span class=w>
+</span><span class=w>    </span><span class=l>startLevel = 1</span><span class=w>
+</span><span class=w>  </span><span class=p>[</span><span class=l>markup.goldmark.renderer]</span><span class=w>
+</span><span class=w>    </span><span class=l>unsafe = true</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=c># 将下面这段配置取消注释可以使 hugo 生成 .md 文件</span><span class=w>
+</span><span class=w></span><span class=c># Uncomment these options to make hugo output .md files.</span><span class=w>
+</span><span class=w></span><span class=c>#[mediaTypes]</span><span class=w>
+</span><span class=w></span><span class=c>#  [mediaTypes.&#34;text/plain&#34;]</span><span class=w>
+</span><span class=w></span><span class=c>#    suffixes = [&#34;md&#34;]</span><span class=w>
+</span><span class=w></span><span class=c>#</span><span class=w>
+</span><span class=w></span><span class=c>#[outputFormats.MarkDown]</span><span class=w>
+</span><span class=w></span><span class=c>#  mediaType = &#34;text/plain&#34;</span><span class=w>
+</span><span class=w></span><span class=c>#  isPlainText = true</span><span class=w>
+</span><span class=w></span><span class=c>#  isHTML = false</span><span class=w>
+</span><span class=w></span><span class=c>#</span><span class=w>
+</span><span class=w></span><span class=c>#[outputs]</span><span class=w>
+</span><span class=w></span><span class=c>#  home = [&#34;HTML&#34;, &#34;RSS&#34;]</span><span class=w>
+</span><span class=w></span><span class=c>#  page = [&#34;HTML&#34;, &#34;MarkDown&#34;]</span><span class=w>
+</span><span class=w></span><span class=c>#  section = [&#34;HTML&#34;, &#34;RSS&#34;]</span><span class=w>
+</span><span class=w></span><span class=c>#  taxonomy = [&#34;HTML&#34;, &#34;RSS&#34;]</span><span class=w>
+</span><span class=w></span><span class=c>#  taxonomyTerm = [&#34;HTML&#34;]</span><span class=w>
+</span><span class=w>
+</span></code></pre></td></tr></table></div></div><h2 id=utterances评论>utterances评论</h2><ul><li>需要在<strong>远程博客库</strong><code>&lt;username>.github.io</code>上安装 <a href=https://github.com/apps/utterances>utterances app</a></li><li><a href=https://blog.eric7.site/2020/01/05/comment>https://blog.eric7.site/2020/01/05/comment</a></li><li><a href=https://utteranc.es>https://utteranc.es</a></li><li><a href=https://nusr.github.io/post/2019/2019-05-04-utterances-introduce>https://nusr.github.io/post/2019/2019-05-04-utterances-introduce</a></li></ul><h1 id=reference>Reference</h1><ul><li><a href=https://gohugo.io/getting-started/quick-start/>https://gohugo.io/getting-started/quick-start/</a></li><li><a href=https://github.com/marketplace/actions/github-pages-action>https://github.com/marketplace/actions/github-pages-action</a></li><li><a href=https://github.com/marketplace/actions/hugo-deploy>https://github.com/marketplace/actions/hugo-deploy</a></li><li><a href=https://io-oi.me/tech/deploy-hugo-to-github-pages-via-github-actions>https://io-oi.me/tech/deploy-hugo-to-github-pages-via-github-actions</a></li><li><a href=https://docs.github.com/en/developers/overview/managing-deploy-keys#deploy-keys>https://docs.github.com/en/developers/overview/managing-deploy-keys#deploy-keys</a></li><li><a href=https://gist.github.com/zhujunsan/a0becf82ade50ed06115>https://gist.github.com/zhujunsan/a0becf82ade50ed06115</a></li><li><a href=https://gist.github.com/holmberd/dbeb8789742acfd791747772104160fe>https://gist.github.com/holmberd/dbeb8789742acfd791747772104160fe</a></li><li><a href=https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions>https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions</a></li><li><a href=https://github.com/peaceiris/actions-hugo>https://github.com/peaceiris/actions-hugo</a></li><li><a href=https://github.com/peaceiris/actions-gh-pages>https://github.com/peaceiris/actions-gh-pages</a></li><li><a href=https://github.com/marketplace/actions/github-pages-action>https://github.com/marketplace/actions/github-pages-action</a></li><li><a href=https://io-oi.me/tech/ssh-with-multiple-github-accounts>https://io-oi.me/tech/ssh-with-multiple-github-accounts</a></li><li><a href=https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/connecting-to-github-with-ssh>https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/connecting-to-github-with-ssh</a></li></ul></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
+<span class=item-content>龍躍</span></p><p class=copyright-item><span class=item-title>上次更新</span>
+<span class=item-content>2021-07-04</span></p><p class=copyright-item><span class=item-title>许可协议</span>
+<span class=item-content><a rel="license noopener" title="国际许可(CC BY-NC-SA 4.0)" href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank>"署名-非商业性使用-相同方式共享 4.0 国际"</a> 转载请保留作者及原文链接</span></p></div><footer class=post-footer><div class=post-tags><a href=/tags//></a><a href=/tags//></a></div><nav class=post-nav></nav></footer></article></div><script src=https://utteranc.es/client.js repo=longyue0521/longyue0521.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script><noscript>Please enable JavaScript to view the <a href=https://github.com/utterance>comments powered by utterances.</a></noscript></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:longyueli0521@gmail.com class="iconfont icon-email" title=email></a><a href=http://github.com/longyue0521 class="iconfont icon-github" title=github></a><a href=https://weibo.com/longyue521 class="iconfont icon-weibo" title=weibo></a><a href=https://space.bilibili.com/86465982 class="iconfont icon-bilibili" title=bilibili></a><a href=https://longyue0521.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动</span>
+<span class=division>|</span>
+<span class=theme-info>主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a></span>
+<span class=copyright-year>&copy;
+2017 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>龍躍</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script><script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script></body></html>
