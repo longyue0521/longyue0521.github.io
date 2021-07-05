@@ -1,12 +1,12 @@
 <!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Hugo+Github+Github Action搭建个人博客 - Talent Is Enduring Patience</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="龍躍"><meta name=description content="使用Hugo+Github+Github Action构建个人技术博客，搭建技术博客的新方式！
-"><meta name=keywords content="Go,K8s,Docker"><meta name=generator content="Hugo 0.84.4 with theme even"><link rel=canonical href=https://longyue0521.github.io/post/using-hugo-github-and-github-action-to-build-blog/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.724502680c7fadc2aa8500dbf9a85eb97571e75f9b492ad6bf9f0d37df6cad71.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="Hugo+Github+Github Action搭建个人博客"><meta property="og:description" content="
+"><meta name=keywords content="Go,K8s,Docker"><meta name=generator content="Hugo 0.85.0 with theme even"><link rel=canonical href=https://longyue0521.github.io/post/using-hugo-github-and-github-action-to-build-blog/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.724502680c7fadc2aa8500dbf9a85eb97571e75f9b492ad6bf9f0d37df6cad71.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="Hugo+Github+Github Action搭建个人博客"><meta property="og:description" content="
 使用Hugo+Github+Github Action构建个人技术博客，搭建技术博客的新方式！
 "><meta property="og:type" content="article"><meta property="og:url" content="https://longyue0521.github.io/post/using-hugo-github-and-github-action-to-build-blog/"><meta property="article:section" content="post"><meta property="article:published_time" content="2021-07-04T15:54:32+08:00"><meta property="article:modified_time" content="2021-07-04T15:54:32+08:00"><meta itemprop=name content="Hugo+Github+Github Action搭建个人博客"><meta itemprop=description content="
 使用Hugo+Github+Github Action构建个人技术博客，搭建技术博客的新方式！
-"><meta itemprop=datePublished content="2021-07-04T15:54:32+08:00"><meta itemprop=dateModified content="2021-07-04T15:54:32+08:00"><meta itemprop=wordCount content="4557"><meta itemprop=keywords content=",,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Hugo+Github+Github Action搭建个人博客"><meta name=twitter:description content="
+"><meta itemprop=datePublished content="2021-07-04T15:54:32+08:00"><meta itemprop=dateModified content="2021-07-04T15:54:32+08:00"><meta itemprop=wordCount content="4432"><meta itemprop=keywords content=",,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Hugo+Github+Github Action搭建个人博客"><meta name=twitter:description content="
 使用Hugo+Github+Github Action构建个人技术博客，搭建技术博客的新方式！
-"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>Go! Just for fun!</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>首页</li></a><a href=/categories/><li class=mobile-menu-item>分类</li></a><a href=/tags/><li class=mobile-menu-item>标签</li></a><a href=/post/><li class=mobile-menu-item>归档</li></a><a href=/about/><li class=mobile-menu-item>关于</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>Go! Just for fun!</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>首页</a></li><li class=menu-item><a class=menu-item-link href=/categories/>分类</a></li><li class=menu-item><a class=menu-item-link href=/tags/>标签</a></li><li class=menu-item><a class=menu-item-link href=/post/>归档</a></li><li class=menu-item><a class=menu-item-link href=/about/>关于</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>Hugo+Github+Github Action搭建个人博客</h1><div class=post-meta><span class=post-time>2021-07-04</span><div class=post-category><a href=/categories//></a><a href=/categories//></a></div><span class=more-meta>约 4557 字</span>
-<span class=more-meta>预计阅读 10 分钟</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>文章目录</h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><a href=#前期准备>前期准备</a><ul><li><a href=#hugo入门>Hugo入门</a></li><li><a href=#创建github远程库>创建Github远程库</a><ul><li><a href=#远程工作库>远程工作库</a></li><li><a href=#远程博客库>远程博客库</a></li></ul></li></ul></li><li><a href=#整体流程>整体流程</a><ul><li><a href=#托管本地工作区>托管本地工作区</a></li><li><a href=#关联远程工作库>关联远程工作库</a></li><li><a href=#自动化部署博客>自动化部署博客</a><ul><li><a href=#github-action>Github Action</a></li><li><a href=#跨库部署博客>跨库部署博客</a></li></ul></li></ul></li><li><a href=#配置博客>配置博客</a><ul><li><a href=#整体配置>整体配置</a></li><li><a href=#utterances评论>utterances评论</a></li><li><a href=#自定义域名>自定义域名</a><ul><li><a href=#修改工作流文件>修改工作流文件</a></li><li><a href=#阿里云域名解析>阿里云域名解析</a></li><li><a href=#设置远程博客库>设置远程博客库</a></li></ul></li></ul></li><li><a href=#reference>Reference</a></li></ul></nav></div></div><div class=post-content><div class="admonition success"><p>使用Hugo+Github+Github Action构建个人技术博客，搭建技术博客的新方式！</p></div><h1 id=前期准备>前期准备</h1><h2 id=hugo入门>Hugo入门</h2><p>本小结利用hugo快速创建一个可以在本地运行的博客工作区
+"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>Go! Just for fun!</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>首页</li></a><a href=/categories/><li class=mobile-menu-item>分类</li></a><a href=/tags/><li class=mobile-menu-item>标签</li></a><a href=/post/><li class=mobile-menu-item>归档</li></a><a href=/about/><li class=mobile-menu-item>关于</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>Go! Just for fun!</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>首页</a></li><li class=menu-item><a class=menu-item-link href=/categories/>分类</a></li><li class=menu-item><a class=menu-item-link href=/tags/>标签</a></li><li class=menu-item><a class=menu-item-link href=/post/>归档</a></li><li class=menu-item><a class=menu-item-link href=/about/>关于</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>Hugo+Github+Github Action搭建个人博客</h1><div class=post-meta><span class=post-time>2021-07-04</span><div class=post-category><a href=/categories//></a><a href=/categories//></a></div><span class=more-meta>约 4432 字</span>
+<span class=more-meta>预计阅读 9 分钟</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>文章目录</h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><a href=#前期准备>前期准备</a><ul><li><a href=#hugo入门>Hugo入门</a></li><li><a href=#创建github远程库>创建Github远程库</a><ul><li><a href=#远程工作库>远程工作库</a></li><li><a href=#远程博客库>远程博客库</a></li></ul></li></ul></li><li><a href=#整体流程>整体流程</a><ul><li><a href=#托管本地工作区>托管本地工作区</a></li><li><a href=#关联远程工作库>关联远程工作库</a></li><li><a href=#自动化部署博客>自动化部署博客</a><ul><li><a href=#github-action>Github Action</a></li><li><a href=#跨库部署博客>跨库部署博客</a></li></ul></li></ul></li><li><a href=#配置博客>配置博客</a><ul><li><a href=#整体配置>整体配置</a></li><li><a href=#修改配色>修改配色</a></li><li><a href=#添加评论>添加评论</a></li><li><a href=#定制域名>定制域名</a><ul><li><a href=#修改工作流文件>修改工作流文件</a></li><li><a href=#阿里云域名解析>阿里云域名解析</a></li><li><a href=#设置远程博客库>设置远程博客库</a></li></ul></li></ul></li><li><a href=#reference>Reference</a></li></ul></nav></div></div><div class=post-content><div class="admonition success"><p>使用Hugo+Github+Github Action构建个人技术博客，搭建技术博客的新方式！</p></div><h1 id=前期准备>前期准备</h1><h2 id=hugo入门>Hugo入门</h2><p>本小结利用hugo快速创建一个可以在本地运行的博客工作区
 ​</p><ol><li>创建站点</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ hugo new site workspace
 </code></pre></td></tr></table></div></div><ol start=2><li>添加主题</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
@@ -469,236 +469,254 @@ $ vim .github/workflows/gh-pages.yml
 </span><span class=lnt>227
 </span><span class=lnt>228
 </span><span class=lnt>229
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-yaml data-lang=yaml><span class=l>baseURL = &#34;https://longyue0521.github.io&#34;</span><span class=w>
-</span><span class=w></span><span class=l>languageCode = &#34;zh-cn&#34;</span><span class=w>
-</span><span class=w></span><span class=l>defaultContentLanguage = &#34;zh-cn&#34;                            </span><span class=w> </span><span class=c># en / zh-cn / ... (This field determines which i18n file to use)</span><span class=w>
-</span><span class=w></span><span class=l>title = &#34;Talent Is Enduring Patience&#34;</span><span class=w>
-</span><span class=w></span><span class=l>preserveTaxonomyNames = true</span><span class=w>
-</span><span class=w></span><span class=l>enableRobotsTXT = true</span><span class=w>
-</span><span class=w></span><span class=l>enableEmoji = true</span><span class=w>
-</span><span class=w></span><span class=l>theme = &#34;even&#34;</span><span class=w>
-</span><span class=w></span><span class=l>enableGitInfo = false # use git commit log to generate lastmod record</span><span class=w> </span><span class=c># 可根据 Git 中的提交生成最近更新记录。</span><span class=w>
-</span><span class=w>
-</span><span class=w></span><span class=c># Syntax highlighting by Chroma. NOTE: Don&#39;t enable `highlightInClient` and `chroma` at the same time!</span><span class=w>
-</span><span class=w></span><span class=l>pygmentsOptions = &#34;linenos=table&#34;</span><span class=w>
-</span><span class=w></span><span class=l>pygmentsCodefences = true</span><span class=w>
-</span><span class=w></span><span class=l>pygmentsUseClasses = true</span><span class=w>
-</span><span class=w></span><span class=l>pygmentsCodefencesGuessSyntax = true</span><span class=w>
-</span><span class=w>
-</span><span class=w></span><span class=l>hasCJKLanguage = true     # has chinese/japanese/korean ?</span><span class=w> </span><span class=c># 自动检测是否包含 中文\日文\韩文</span><span class=w>
-</span><span class=w></span><span class=l>paginate = 5                                             </span><span class=w> </span><span class=c># 首页每页显示的文章数</span><span class=w>
-</span><span class=w></span><span class=l>disqusShortname = &#34;&#34; # &#34;outofmemory-me&#34;     </span><span class=w> </span><span class=c># disqus_shortname</span><span class=w>
-</span><span class=w></span><span class=l>googleAnalytics = &#34;&#34;     </span><span class=w> </span><span class=c># UA-XXXXXXXX-X</span><span class=w>
-</span><span class=w></span><span class=l>copyright = &#34;&#34;            # default: author.name ↓       </span><span class=w> </span><span class=c># 默认为下面配置的author.name ↓</span><span class=w>
-</span><span class=w>
-</span><span class=w></span><span class=p>[</span><span class=l>author]                  # essential                    </span><span class=w> </span><span class=c># 必需</span><span class=w>
-</span><span class=w>  </span><span class=l>name = &#34;龍躍&#34;</span><span class=w>
-</span><span class=w>
-</span><span class=w></span><span class=p>[</span><span class=l>sitemap]                 # essential                    </span><span class=w> </span><span class=c># 必需</span><span class=w>
-</span><span class=w>  </span><span class=l>changefreq = &#34;weekly&#34;</span><span class=w>
-</span><span class=w>  </span><span class=l>priority = 0.5</span><span class=w>
-</span><span class=w>  </span><span class=l>filename = &#34;sitemap.xml&#34;</span><span class=w>
-</span><span class=w>
-</span><span class=w></span><span class=p>[[</span><span class=l>menu.main]]             # config your menu             </span><span class=w> </span><span class=c># 配置目录</span><span class=w>
-</span><span class=w>  </span><span class=l>name = &#34;首页&#34;</span><span class=w> </span><span class=c>#&#34;Home&#34;</span><span class=w>
-</span><span class=w>  </span><span class=l>weight = 10</span><span class=w>
-</span><span class=w>  </span><span class=l>identifier = &#34;home&#34;</span><span class=w>
-</span><span class=w>  </span><span class=l>url = &#34;/&#34;</span><span class=w>
-</span><span class=w></span><span class=p>[[</span><span class=l>menu.main]]</span><span class=w>
-</span><span class=w>  </span><span class=l>name = &#34;归档&#34;</span><span class=w> </span><span class=c>#&#34;Archives&#34;</span><span class=w>
-</span><span class=w>  </span><span class=l>weight = 40</span><span class=w>
-</span><span class=w>  </span><span class=l>identifier = &#34;archives&#34;</span><span class=w>
-</span><span class=w>  </span><span class=l>url = &#34;/post/&#34;</span><span class=w>
-</span><span class=w></span><span class=p>[[</span><span class=l>menu.main]]</span><span class=w>
-</span><span class=w>  </span><span class=l>name = &#34;标签&#34;</span><span class=w> </span><span class=c>#&#34;Tags&#34;</span><span class=w>
-</span><span class=w>  </span><span class=l>weight = 30</span><span class=w>
-</span><span class=w>  </span><span class=l>identifier = &#34;tags&#34;</span><span class=w>
-</span><span class=w>  </span><span class=l>url = &#34;/tags/&#34;</span><span class=w>
-</span><span class=w></span><span class=p>[[</span><span class=l>menu.main]]</span><span class=w>
-</span><span class=w>  </span><span class=l>name = &#34;分类&#34;</span><span class=w> </span><span class=c>#&#34;Categories&#34;</span><span class=w>
-</span><span class=w>  </span><span class=l>weight = 20</span><span class=w>
-</span><span class=w>  </span><span class=l>identifier = &#34;categories&#34;</span><span class=w>
-</span><span class=w>  </span><span class=l>url = &#34;/categories/&#34;</span><span class=w>
-</span><span class=w>
-</span><span class=w></span><span class=p>[</span><span class=l>params]</span><span class=w>
-</span><span class=w>  </span><span class=l>version = &#34;4.x&#34;          </span><span class=w> </span><span class=c># Used to give a friendly message when you have an incompatible update</span><span class=w>
-</span><span class=w>  </span><span class=l>debug = false            </span><span class=w> </span><span class=c># If true, load `eruda.min.js`. See https://github.com/liriliri/eruda</span><span class=w>
-</span><span class=w>
-</span><span class=w>  </span><span class=l>since = &#34;2017&#34;            # Site creation time         </span><span class=w> </span><span class=c># 站点建立时间</span><span class=w>
-</span><span class=w>  </span><span class=c># use public git repo url to link lastmod git commit, enableGitInfo should be true.</span><span class=w>
-</span><span class=w>  </span><span class=c># 指定 git 仓库地址，可以生成指向最近更新的 git commit 的链接，需要将 enableGitInfo 设置成 true.</span><span class=w>
-</span><span class=w>  </span><span class=l>gitRepo = &#34;&#34;</span><span class=w>
-</span><span class=w>
-</span><span class=w>  </span><span class=c># site info (optional)                                  # 站点信息（可选，不需要的可以直接注释掉）</span><span class=w>
-</span><span class=w>  </span><span class=l>logoTitle = &#34;Go! Just for fun!&#34;        # default: the title value   </span><span class=w> </span><span class=c># 默认值: 上面设置的title值</span><span class=w>
-</span><span class=w>  </span><span class=l>keywords = [&#34;Go&#34;, &#34;K8s&#34;,&#34;Docker&#34;]</span><span class=w>
-</span><span class=w>  </span><span class=l>description = &#34;Talent Is Enduring Patience | Just For Fun&#34;</span><span class=w>
-</span><span class=w>
-</span><span class=w>  </span><span class=c># paginate of archives, tags and categories             # 归档、标签、分类每页显示的文章数目，建议修改为一个较大的值</span><span class=w>
-</span><span class=w>  </span><span class=l>archivePaginate = 50</span><span class=w>
-</span><span class=w>
-</span><span class=w>  </span><span class=c># show &#39;xx Posts In Total&#39; in archive page ?            # 是否在归档页显示文章的总数</span><span class=w>
-</span><span class=w>  </span><span class=l>showArchiveCount = true</span><span class=w>
-</span><span class=w>
-</span><span class=w>  </span><span class=c># The date format to use; for a list of valid formats, see https://gohugo.io/functions/format/</span><span class=w>
-</span><span class=w>  </span><span class=l>dateFormatToUse = &#34;2006-01-02&#34;</span><span class=w>
-</span><span class=w>
-</span><span class=w>  </span><span class=c># show word count and read time ?                       # 是否显示字数统计与阅读时间</span><span class=w>
-</span><span class=w>  </span><span class=l>moreMeta = true</span><span class=w>
-</span><span class=w>
-</span><span class=w>  </span><span class=c># Syntax highlighting by highlight.js</span><span class=w>
-</span><span class=w>  </span><span class=l>highlightInClient = false</span><span class=w>
-</span><span class=w>
-</span><span class=w>  </span><span class=c># 一些全局开关，你也可以在每一篇内容的 front matter 中针对单篇内容关闭或开启某些功能，在 archetypes/default.md 查看更多信息。</span><span class=w>
-</span><span class=w>  </span><span class=c># Some global options, you can also close or open something in front matter for a single post, see more information from `archetypes/default.md`.</span><span class=w>
-</span><span class=w>  </span><span class=l>toc = true                                                                           </span><span class=w> </span><span class=c># 是否开启目录</span><span class=w>
-</span><span class=w>  </span><span class=l>autoCollapseToc = false   # Auto expand and collapse toc                             </span><span class=w> </span><span class=c># 目录自动展开/折叠</span><span class=w>
-</span><span class=w>  </span><span class=l>fancybox = true           # see https://github.com/fancyapps/fancybox                </span><span class=w> </span><span class=c># 是否启用fancybox（图片可点击）</span><span class=w>
-</span><span class=w>
-</span><span class=w>  </span><span class=c># mathjax</span><span class=w>
-</span><span class=w>  </span><span class=l>mathjax = false           # see https://www.mathjax.org/                             </span><span class=w> </span><span class=c># 是否使用mathjax（数学公式）</span><span class=w>
-</span><span class=w>  </span><span class=l>mathjaxEnableSingleDollar = false                                                    </span><span class=w> </span><span class=c># 是否使用 $...$ 即可進行inline latex渲染</span><span class=w>
-</span><span class=w>  </span><span class=l>mathjaxEnableAutoNumber = false                                                      </span><span class=w> </span><span class=c># 是否使用公式自动编号</span><span class=w>
-</span><span class=w>  </span><span class=l>mathjaxUseLocalFiles = false </span><span class=w> </span><span class=c># You should install mathjax in `your-site/static/lib/mathjax`</span><span class=w>
-</span><span class=w>
-</span><span class=w>  </span><span class=l>postMetaInFooter = true   # contain author, lastMod, markdown link, license          </span><span class=w> </span><span class=c># 包含作者，上次修改时间，markdown链接，许可信息</span><span class=w>
-</span><span class=w>  </span><span class=l>linkToMarkDown = true    # Only effective when hugo will output .md files.          </span><span class=w> </span><span class=c># 链接到markdown原始文件（仅当允许hugo生成markdown文件时有效）</span><span class=w>
-</span><span class=w>  </span><span class=l>contentCopyright = &#39;&lt;a rel=&#34;license noopener&#34; title=&#34;国际许可(CC BY-NC-SA 4.0)&#34;href=&#34;https://creativecommons.org/licenses/by-nc-sa/4.0/&#34; target=&#34;_blank&#34;&gt;&#34;署名-非商业性使用-相同方式共享 4.0 国际&#34;&lt;/a&gt; 转载请保留作者及原文链接&#39;    </span><span class=w> </span><span class=c># e.g. &#39;&lt;a rel=&#34;license noopener&#34; href=&#34;https://creativecommons.org/licenses/by-nc-nd/4.0/&#34; target=&#34;_blank&#34;&gt;CC BY-NC-ND 4.0&lt;/a&gt;&#39;</span><span class=w>
-</span><span class=w>
-</span><span class=w>  </span><span class=l>changyanAppid = &#34;&#34;        # Changyan app id            </span><span class=w> </span><span class=c># 畅言</span><span class=w>
-</span><span class=w>  </span><span class=l>changyanAppkey = &#34;&#34;      </span><span class=w> </span><span class=c># Changyan app key</span><span class=w>
-</span><span class=w>
-</span><span class=w>  </span><span class=l>livereUID = &#34;&#34;            # LiveRe UID                 </span><span class=w> </span><span class=c># 来必力</span><span class=w>
-</span><span class=w>
-</span><span class=w>  </span><span class=l>baiduPush = false        # baidu push                 </span><span class=w> </span><span class=c># 百度</span><span class=w>
-</span><span class=w>  </span><span class=l>baiduAnalytics = &#34;&#34;     </span><span class=w> </span><span class=c># Baidu Analytics</span><span class=w>
-</span><span class=w>  </span><span class=l>baiduVerification = &#34;&#34;  </span><span class=w> </span><span class=c># Baidu Verification</span><span class=w>
-</span><span class=w>  </span><span class=l>googleVerification = &#34;&#34;  # Google Verification        </span><span class=w> </span><span class=c># 谷歌</span><span class=w>
-</span><span class=w>
-</span><span class=w>  </span><span class=c># Link custom CSS and JS assets</span><span class=w>
-</span><span class=w>  </span><span class=c>#   (relative to /static/css and /static/js respectively)</span><span class=w>
-</span><span class=w>  </span><span class=l>customCSS = []</span><span class=w>
-</span><span class=w>  </span><span class=l>customJS = []</span><span class=w>
-</span><span class=w>
-</span><span class=w>  </span><span class=l>uglyURLs = false         </span><span class=w> </span><span class=c># please keep same with uglyurls setting</span><span class=w>
-</span><span class=w>
-</span><span class=w>  </span><span class=p>[</span><span class=l>params.publicCDN]        # load these files from public cdn                         </span><span class=w> </span><span class=c># 启用公共CDN，需自行定义</span><span class=w>
-</span><span class=w>    </span><span class=l>enable = true</span><span class=w>
-</span><span class=w>    </span><span class=l>jquery = &#39;&lt;script src=&#34;https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js&#34; integrity=&#34;sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;&#39;</span><span class=w>
-</span><span class=w>    </span><span class=l>slideout = &#39;&lt;script src=&#34;https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js&#34; integrity=&#34;sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;&#39;</span><span class=w>
-</span><span class=w>    </span><span class=l>fancyboxJS = &#39;&lt;script src=&#34;https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js&#34; integrity=&#34;sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;&#39;</span><span class=w>
-</span><span class=w>    </span><span class=l>fancyboxCSS = &#39;&lt;link rel=&#34;stylesheet&#34; href=&#34;https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css&#34; integrity=&#34;sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=&#34; crossorigin=&#34;anonymous&#34;&gt;&#39;</span><span class=w>
-</span><span class=w>    </span><span class=l>timeagoJS = &#39;&lt;script src=&#34;https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js&#34; integrity=&#34;sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;&#39;</span><span class=w>
-</span><span class=w>    </span><span class=l>timeagoLocalesJS = &#39;&lt;script src=&#34;https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js&#34; integrity=&#34;sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;&#39;</span><span class=w>
-</span><span class=w>    </span><span class=l>flowchartDiagramsJS = &#39;&lt;script src=&#34;https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js&#34; integrity=&#34;sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt; &lt;script src=&#34;https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js&#34; integrity=&#34;sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;&#39;</span><span class=w>
-</span><span class=w>    </span><span class=l>sequenceDiagramsCSS = &#39;&lt;link rel=&#34;stylesheet&#34; href=&#34;https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css&#34; integrity=&#34;sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF&#34; crossorigin=&#34;anonymous&#34;&gt;&#39;</span><span class=w>
-</span><span class=w>    </span><span class=l>sequenceDiagramsJS = &#39;&lt;script src=&#34;https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js&#34; integrity=&#34;sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt; &lt;script src=&#34;https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js&#34; integrity=&#34;sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt; &lt;script src=&#34;https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js&#34; integrity=&#34;sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt; &lt;script src=&#34;https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js&#34; integrity=&#34;sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;&#39;</span><span class=w>
-</span><span class=w>
-</span><span class=w>  </span><span class=c># Display a message at the beginning of an article to warn the readers that it&#39;s content may be outdated.</span><span class=w>
-</span><span class=w>  </span><span class=c># 在文章开头显示提示信息，提醒读者文章内容可能过时。</span><span class=w>
-</span><span class=w>  </span><span class=p>[</span><span class=l>params.outdatedInfoWarning]</span><span class=w>
-</span><span class=w>    </span><span class=l>enable = false</span><span class=w>
-</span><span class=w>    </span><span class=l>hint = 30               # Display hint if the last modified time is more than these days ago.   </span><span class=w> </span><span class=c># 如果文章最后更新于这天数之前，显示提醒</span><span class=w>
-</span><span class=w>    </span><span class=l>warn = 180              # Display warning if the last modified time is more than these days ago.   </span><span class=w> </span><span class=c># 如果文章最后更新于这天数之前，显示警告</span><span class=w>
-</span><span class=w>
-</span><span class=w>  </span><span class=p>[</span><span class=l>params.gitment]         </span><span class=w> </span><span class=c># Gitment is a comment system based on GitHub issues. see https://github.com/imsun/gitment</span><span class=w>
-</span><span class=w>    </span><span class=l>owner = &#34;&#34;             </span><span class=w> </span><span class=c># Your GitHub ID</span><span class=w>
-</span><span class=w>    </span><span class=l>repo = &#34;&#34;              </span><span class=w> </span><span class=c># The repo to store comments</span><span class=w>
-</span><span class=w>    </span><span class=l>clientId = &#34;&#34;          </span><span class=w> </span><span class=c># Your client ID</span><span class=w>
-</span><span class=w>    </span><span class=l>clientSecret = &#34;&#34;      </span><span class=w> </span><span class=c># Your client secret</span><span class=w>
-</span><span class=w>
-</span><span class=w>  </span><span class=p>[</span><span class=l>params.utterances]      </span><span class=w> </span><span class=c># https://utteranc.es/</span><span class=w>
-</span><span class=w>    </span><span class=l>owner = &#34;longyue0521&#34;             </span><span class=w> </span><span class=c># Your GitHub ID</span><span class=w>
-</span><span class=w>    </span><span class=l>repo = &#34;longyue0521.github.io&#34;              </span><span class=w> </span><span class=c># The repo to store comments</span><span class=w>
-</span><span class=w>
-</span><span class=w>  </span><span class=p>[</span><span class=l>params.gitalk]          </span><span class=w> </span><span class=c># Gitalk is a comment system based on GitHub issues. see https://github.com/gitalk/gitalk</span><span class=w>
-</span><span class=w>    </span><span class=l>owner = &#34;&#34;             </span><span class=w> </span><span class=c># Your GitHub ID</span><span class=w>
-</span><span class=w>    </span><span class=l>repo = &#34;&#34;              </span><span class=w> </span><span class=c># The repo to store comments</span><span class=w>
-</span><span class=w>    </span><span class=l>clientId = &#34;&#34;          </span><span class=w> </span><span class=c># Your client ID</span><span class=w>
-</span><span class=w>    </span><span class=l>clientSecret = &#34;&#34;      </span><span class=w> </span><span class=c># Your client secret</span><span class=w>
-</span><span class=w>
-</span><span class=w>  </span><span class=c># Valine.</span><span class=w>
-</span><span class=w>  </span><span class=c># You can get your appid and appkey from https://leancloud.cn</span><span class=w>
-</span><span class=w>  </span><span class=c># more info please open https://valine.js.org</span><span class=w>
-</span><span class=w>  </span><span class=p>[</span><span class=l>params.valine]</span><span class=w>
-</span><span class=w>    </span><span class=l>enable = false</span><span class=w>
-</span><span class=w>    </span><span class=l>appId = &#39;你的appId&#39;</span><span class=w>
-</span><span class=w>    </span><span class=l>appKey = &#39;你的appKey&#39;</span><span class=w>
-</span><span class=w>    </span><span class=l>notify = false </span><span class=w> </span><span class=c># mail notifier , https://github.com/xCss/Valine/wiki</span><span class=w>
-</span><span class=w>    </span><span class=l>verify = false</span><span class=w> </span><span class=c># Verification code</span><span class=w>
-</span><span class=w>    </span><span class=l>avatar = &#39;mm&#39;</span><span class=w>
-</span><span class=w>    </span><span class=l>placeholder = &#39;说点什么吧...&#39;</span><span class=w>
-</span><span class=w>    </span><span class=l>visitor = false</span><span class=w>
-</span><span class=w>
-</span><span class=w>  </span><span class=p>[</span><span class=l>params.flowchartDiagrams]# see https://blog.olowolo.com/example-site/post/js-flowchart-diagrams/</span><span class=w>
-</span><span class=w>    </span><span class=l>enable = false</span><span class=w>
-</span><span class=w>    </span><span class=l>options = &#34;&#34;</span><span class=w>
-</span><span class=w>
-</span><span class=w>  </span><span class=p>[</span><span class=l>params.sequenceDiagrams]</span><span class=w> </span><span class=c># see https://blog.olowolo.com/example-site/post/js-sequence-diagrams/</span><span class=w>
-</span><span class=w>    </span><span class=l>enable = false</span><span class=w>
-</span><span class=w>    </span><span class=l>options = &#34;&#34;           </span><span class=w> </span><span class=c># default: &#34;{theme: &#39;simple&#39;}&#34;</span><span class=w>
-</span><span class=w>
-</span><span class=w>  </span><span class=p>[</span><span class=l>params.busuanzi]         # count web traffic by busuanzi                            </span><span class=w> </span><span class=c># 是否使用不蒜子统计站点访问量</span><span class=w>
-</span><span class=w>    </span><span class=l>enable = false</span><span class=w>
-</span><span class=w>    </span><span class=l>siteUV = true</span><span class=w>
-</span><span class=w>    </span><span class=l>sitePV = true</span><span class=w>
-</span><span class=w>    </span><span class=l>pagePV = true</span><span class=w>
-</span><span class=w>
-</span><span class=w>  </span><span class=p>[</span><span class=l>params.reward]                                        </span><span class=w> </span><span class=c># 文章打赏</span><span class=w>
-</span><span class=w>    </span><span class=l>enable = false</span><span class=w>
-</span><span class=w>    </span><span class=l>wechat = &#34;/path/to/your/wechat-qr-code.png&#34;          </span><span class=w> </span><span class=c># 微信二维码</span><span class=w>
-</span><span class=w>    </span><span class=l>alipay = &#34;/path/to/your/alipay-qr-code.png&#34;          </span><span class=w> </span><span class=c># 支付宝二维码</span><span class=w>
-</span><span class=w>
-</span><span class=w>  </span><span class=p>[</span><span class=l>params.social]                                        </span><span class=w> </span><span class=c># 社交链接</span><span class=w>
-</span><span class=w>    </span><span class=l>a-email = &#34;mailto:longyueli0521@gmail.com&#34;</span><span class=w>
-</span><span class=w>    </span><span class=c>#b-stack-overflow = &#34;http://localhost:1313&#34;</span><span class=w>
-</span><span class=w>    </span><span class=c>#c-twitter = &#34;http://localhost:1313&#34;</span><span class=w>
-</span><span class=w>    </span><span class=c>#d-facebook = &#34;http://localhost:1313&#34;</span><span class=w>
-</span><span class=w>    </span><span class=c>#e-linkedin = &#34;http://localhost:1313&#34;</span><span class=w>
-</span><span class=w>    </span><span class=c>#f-google = &#34;http://localhost:1313&#34;</span><span class=w>
-</span><span class=w>    </span><span class=l>g-github = &#34;http://github.com/longyue0521&#34;</span><span class=w>
-</span><span class=w>    </span><span class=l>h-weibo = &#34;https://weibo.com/longyue521&#34;</span><span class=w>
-</span><span class=w>    </span><span class=c>#i-zhihu = &#34;http://localhost:1313&#34;</span><span class=w>
-</span><span class=w>    </span><span class=c>#j-douban = &#34;http://localhost:1313&#34;</span><span class=w>
-</span><span class=w>    </span><span class=c>#k-pocket = &#34;http://localhost:1313&#34;</span><span class=w>
-</span><span class=w>    </span><span class=c>#l-tumblr = &#34;http://localhost:1313&#34;</span><span class=w>
-</span><span class=w>    </span><span class=c>#m-instagram = &#34;http://localhost:1313&#34;</span><span class=w>
-</span><span class=w>    </span><span class=c>#n-gitlab = &#34;http://localhost:1313&#34;</span><span class=w>
-</span><span class=w>    </span><span class=l>o-bilibili = &#34;https://space.bilibili.com/86465982&#34;</span><span class=w>
-</span><span class=w>
-</span><span class=w></span><span class=c># See https://gohugo.io/about/hugo-and-gdpr/</span><span class=w>
-</span><span class=w></span><span class=p>[</span><span class=l>privacy]</span><span class=w>
-</span><span class=w>  </span><span class=p>[</span><span class=l>privacy.googleAnalytics]</span><span class=w>
-</span><span class=w>    </span><span class=l>anonymizeIP = true     </span><span class=w> </span><span class=c># 12.214.31.144 -&gt; 12.214.31.0</span><span class=w>
-</span><span class=w>  </span><span class=p>[</span><span class=l>privacy.youtube]</span><span class=w>
-</span><span class=w>    </span><span class=l>privacyEnhanced = true</span><span class=w>
-</span><span class=w>
-</span><span class=w></span><span class=c># see https://gohugo.io/getting-started/configuration-markup</span><span class=w>
-</span><span class=w></span><span class=p>[</span><span class=l>markup]</span><span class=w>
-</span><span class=w>  </span><span class=p>[</span><span class=l>markup.tableOfContents]</span><span class=w>
-</span><span class=w>    </span><span class=l>startLevel = 1</span><span class=w>
-</span><span class=w>  </span><span class=p>[</span><span class=l>markup.goldmark.renderer]</span><span class=w>
-</span><span class=w>    </span><span class=l>unsafe = true</span><span class=w>
-</span><span class=w>
-</span><span class=w></span><span class=c># 将下面这段配置取消注释可以使 hugo 生成 .md 文件</span><span class=w>
-</span><span class=w></span><span class=c># Uncomment these options to make hugo output .md files.</span><span class=w>
-</span><span class=w></span><span class=c>#[mediaTypes]</span><span class=w>
-</span><span class=w></span><span class=c>#  [mediaTypes.&#34;text/plain&#34;]</span><span class=w>
-</span><span class=w></span><span class=c>#    suffixes = [&#34;md&#34;]</span><span class=w>
-</span><span class=w></span><span class=c>#</span><span class=w>
-</span><span class=w></span><span class=c>#[outputFormats.MarkDown]</span><span class=w>
-</span><span class=w></span><span class=c>#  mediaType = &#34;text/plain&#34;</span><span class=w>
-</span><span class=w></span><span class=c>#  isPlainText = true</span><span class=w>
-</span><span class=w></span><span class=c>#  isHTML = false</span><span class=w>
-</span><span class=w></span><span class=c>#</span><span class=w>
-</span><span class=w></span><span class=c>#[outputs]</span><span class=w>
-</span><span class=w></span><span class=c>#  home = [&#34;HTML&#34;, &#34;RSS&#34;]</span><span class=w>
-</span><span class=w></span><span class=c>#  page = [&#34;HTML&#34;, &#34;MarkDown&#34;]</span><span class=w>
-</span><span class=w></span><span class=c>#  section = [&#34;HTML&#34;, &#34;RSS&#34;]</span><span class=w>
-</span><span class=w></span><span class=c>#  taxonomy = [&#34;HTML&#34;, &#34;RSS&#34;]</span><span class=w>
-</span><span class=w></span><span class=c>#  taxonomyTerm = [&#34;HTML&#34;]</span><span class=w>
-</span><span class=w>
-</span></code></pre></td></tr></table></div></div><h2 id=utterances评论>utterances评论</h2><ul><li>需要在<strong>远程博客库</strong><code>&lt;username>.github.io</code>上安装 <a href=https://github.com/apps/utterances>utterances app</a></li><li><a href=https://blog.eric7.site/2020/01/05/comment>https://blog.eric7.site/2020/01/05/comment</a></li><li><a href=https://utteranc.es>https://utteranc.es</a></li><li><a href=https://nusr.github.io/post/2019/2019-05-04-utterances-introduce>https://nusr.github.io/post/2019/2019-05-04-utterances-introduce</a></li></ul><h2 id=自定义域名>自定义域名</h2><h3 id=修改工作流文件>修改工作流文件</h3><p>修改Github Action工作流配置文件<code>.github/workflow/gh-pages.yml</code>添加<code>CNAME</code>文件。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-toml data-lang=toml><span class=nx>baseURL</span> <span class=p>=</span> <span class=s2>&#34;https://longyue0521.github.io&#34;</span>
+<span class=nx>languageCode</span> <span class=p>=</span> <span class=s2>&#34;zh-cn&#34;</span>
+<span class=nx>defaultContentLanguage</span> <span class=p>=</span> <span class=s2>&#34;zh-cn&#34;</span>                             <span class=c># en / zh-cn / ... (This field determines which i18n file to use)</span>
+<span class=nx>title</span> <span class=p>=</span> <span class=s2>&#34;Talent Is Enduring Patience&#34;</span>
+<span class=nx>preserveTaxonomyNames</span> <span class=p>=</span> <span class=kc>true</span>
+<span class=nx>enableRobotsTXT</span> <span class=p>=</span> <span class=kc>true</span>
+<span class=nx>enableEmoji</span> <span class=p>=</span> <span class=kc>true</span>
+<span class=nx>theme</span> <span class=p>=</span> <span class=s2>&#34;even&#34;</span>
+<span class=nx>enableGitInfo</span> <span class=p>=</span> <span class=kc>false</span> <span class=c># use git commit log to generate lastmod record # 可根据 Git 中的提交生成最近更新记录。</span>
+
+<span class=c># Syntax highlighting by Chroma. NOTE: Don&#39;t enable `highlightInClient` and `chroma` at the same time!</span>
+<span class=nx>pygmentsOptions</span> <span class=p>=</span> <span class=s2>&#34;linenos=table&#34;</span>
+<span class=nx>pygmentsCodefences</span> <span class=p>=</span> <span class=kc>true</span>
+<span class=nx>pygmentsUseClasses</span> <span class=p>=</span> <span class=kc>true</span>
+<span class=nx>pygmentsCodefencesGuessSyntax</span> <span class=p>=</span> <span class=kc>true</span>
+
+<span class=nx>hasCJKLanguage</span> <span class=p>=</span> <span class=kc>true</span>     <span class=c># has chinese/japanese/korean ? # 自动检测是否包含 中文\日文\韩文</span>
+<span class=nx>paginate</span> <span class=p>=</span> <span class=mi>5</span>                                              <span class=c># 首页每页显示的文章数</span>
+<span class=nx>disqusShortname</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span> <span class=c># &#34;outofmemory-me&#34;      # disqus_shortname</span>
+<span class=nx>googleAnalytics</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>      <span class=c># UA-XXXXXXXX-X</span>
+<span class=nx>copyright</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>            <span class=c># default: author.name ↓        # 默认为下面配置的author.name ↓</span>
+
+<span class=p>[</span><span class=nx>author</span><span class=p>]</span>                  <span class=c># essential                     # 必需</span>
+  <span class=nx>name</span> <span class=p>=</span> <span class=s2>&#34;龍躍&#34;</span>
+
+<span class=p>[</span><span class=nx>sitemap</span><span class=p>]</span>                 <span class=c># essential                     # 必需</span>
+  <span class=nx>changefreq</span> <span class=p>=</span> <span class=s2>&#34;weekly&#34;</span>
+  <span class=nx>priority</span> <span class=p>=</span> <span class=mf>0.5</span>
+  <span class=nx>filename</span> <span class=p>=</span> <span class=s2>&#34;sitemap.xml&#34;</span>
+
+<span class=p>[[</span><span class=nx>menu</span><span class=p>.</span><span class=nx>main</span><span class=p>]]</span>             <span class=c># config your menu              # 配置目录</span>
+  <span class=nx>name</span> <span class=p>=</span> <span class=s2>&#34;首页&#34;</span> <span class=c>#&#34;Home&#34;</span>
+  <span class=nx>weight</span> <span class=p>=</span> <span class=mi>10</span>
+  <span class=nx>identifier</span> <span class=p>=</span> <span class=s2>&#34;home&#34;</span>
+  <span class=nx>url</span> <span class=p>=</span> <span class=s2>&#34;/&#34;</span>
+<span class=p>[[</span><span class=nx>menu</span><span class=p>.</span><span class=nx>main</span><span class=p>]]</span>
+  <span class=nx>name</span> <span class=p>=</span> <span class=s2>&#34;归档&#34;</span> <span class=c>#&#34;Archives&#34;</span>
+  <span class=nx>weight</span> <span class=p>=</span> <span class=mi>40</span>
+  <span class=nx>identifier</span> <span class=p>=</span> <span class=s2>&#34;archives&#34;</span>
+  <span class=nx>url</span> <span class=p>=</span> <span class=s2>&#34;/post/&#34;</span>
+<span class=p>[[</span><span class=nx>menu</span><span class=p>.</span><span class=nx>main</span><span class=p>]]</span>
+  <span class=nx>name</span> <span class=p>=</span> <span class=s2>&#34;标签&#34;</span> <span class=c>#&#34;Tags&#34;</span>
+  <span class=nx>weight</span> <span class=p>=</span> <span class=mi>30</span>
+  <span class=nx>identifier</span> <span class=p>=</span> <span class=s2>&#34;tags&#34;</span>
+  <span class=nx>url</span> <span class=p>=</span> <span class=s2>&#34;/tags/&#34;</span>
+<span class=p>[[</span><span class=nx>menu</span><span class=p>.</span><span class=nx>main</span><span class=p>]]</span>
+  <span class=nx>name</span> <span class=p>=</span> <span class=s2>&#34;分类&#34;</span> <span class=c>#&#34;Categories&#34;</span>
+  <span class=nx>weight</span> <span class=p>=</span> <span class=mi>20</span>
+  <span class=nx>identifier</span> <span class=p>=</span> <span class=s2>&#34;categories&#34;</span>
+  <span class=nx>url</span> <span class=p>=</span> <span class=s2>&#34;/categories/&#34;</span>
+
+<span class=p>[</span><span class=nx>params</span><span class=p>]</span>
+  <span class=nx>version</span> <span class=p>=</span> <span class=s2>&#34;4.x&#34;</span>           <span class=c># Used to give a friendly message when you have an incompatible update</span>
+  <span class=nx>debug</span> <span class=p>=</span> <span class=kc>false</span>             <span class=c># If true, load `eruda.min.js`. See https://github.com/liriliri/eruda</span>
+
+  <span class=nx>since</span> <span class=p>=</span> <span class=s2>&#34;2017&#34;</span>            <span class=c># Site creation time          # 站点建立时间</span>
+  <span class=c># use public git repo url to link lastmod git commit, enableGitInfo should be true.</span>
+  <span class=c># 指定 git 仓库地址，可以生成指向最近更新的 git commit 的链接，需要将 enableGitInfo 设置成 true.</span>
+  <span class=nx>gitRepo</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>
+
+  <span class=c># site info (optional)                                  # 站点信息（可选，不需要的可以直接注释掉）</span>
+  <span class=nx>logoTitle</span> <span class=p>=</span> <span class=s2>&#34;Go! Just for fun!&#34;</span>        <span class=c># default: the title value    # 默认值: 上面设置的title值</span>
+  <span class=nx>keywords</span> <span class=p>=</span> <span class=p>[</span><span class=s2>&#34;Go&#34;</span><span class=p>,</span> <span class=s2>&#34;K8s&#34;</span><span class=p>,</span><span class=s2>&#34;Docker&#34;</span><span class=p>]</span>
+  <span class=nx>description</span> <span class=p>=</span> <span class=s2>&#34;Talent Is Enduring Patience | Just For Fun&#34;</span>
+
+  <span class=c># paginate of archives, tags and categories             # 归档、标签、分类每页显示的文章数目，建议修改为一个较大的值</span>
+  <span class=nx>archivePaginate</span> <span class=p>=</span> <span class=mi>50</span>
+
+  <span class=c># show &#39;xx Posts In Total&#39; in archive page ?            # 是否在归档页显示文章的总数</span>
+  <span class=nx>showArchiveCount</span> <span class=p>=</span> <span class=kc>true</span>
+
+  <span class=c># The date format to use; for a list of valid formats, see https://gohugo.io/functions/format/</span>
+  <span class=nx>dateFormatToUse</span> <span class=p>=</span> <span class=s2>&#34;2006-01-02&#34;</span>
+
+  <span class=c># show word count and read time ?                       # 是否显示字数统计与阅读时间</span>
+  <span class=nx>moreMeta</span> <span class=p>=</span> <span class=kc>true</span>
+
+  <span class=c># Syntax highlighting by highlight.js</span>
+  <span class=nx>highlightInClient</span> <span class=p>=</span> <span class=kc>false</span>
+
+  <span class=c># 一些全局开关，你也可以在每一篇内容的 front matter 中针对单篇内容关闭或开启某些功能，在 archetypes/default.md 查看更多信息。</span>
+  <span class=c># Some global options, you can also close or open something in front matter for a single post, see more information from `archetypes/default.md`.</span>
+  <span class=nx>toc</span> <span class=p>=</span> <span class=kc>true</span>                                                                            <span class=c># 是否开启目录</span>
+  <span class=nx>autoCollapseToc</span> <span class=p>=</span> <span class=kc>false</span>   <span class=c># Auto expand and collapse toc                              # 目录自动展开/折叠</span>
+  <span class=nx>fancybox</span> <span class=p>=</span> <span class=kc>true</span>           <span class=c># see https://github.com/fancyapps/fancybox                 # 是否启用fancybox（图片可点击）</span>
+
+  <span class=c># mathjax</span>
+  <span class=nx>mathjax</span> <span class=p>=</span> <span class=kc>false</span>           <span class=c># see https://www.mathjax.org/                              # 是否使用mathjax（数学公式）</span>
+  <span class=nx>mathjaxEnableSingleDollar</span> <span class=p>=</span> <span class=kc>false</span>                                                     <span class=c># 是否使用 $...$ 即可進行inline latex渲染</span>
+  <span class=nx>mathjaxEnableAutoNumber</span> <span class=p>=</span> <span class=kc>false</span>                                                       <span class=c># 是否使用公式自动编号</span>
+  <span class=nx>mathjaxUseLocalFiles</span> <span class=p>=</span> <span class=kc>false</span>  <span class=c># You should install mathjax in `your-site/static/lib/mathjax`</span>
+
+  <span class=nx>postMetaInFooter</span> <span class=p>=</span> <span class=kc>true</span>   <span class=c># contain author, lastMod, markdown link, license           # 包含作者，上次修改时间，markdown链接，许可信息</span>
+  <span class=nx>linkToMarkDown</span> <span class=p>=</span> <span class=kc>true</span>    <span class=c># Only effective when hugo will output .md files.           # 链接到markdown原始文件（仅当允许hugo生成markdown文件时有效）</span>
+  <span class=nx>contentCopyright</span> <span class=p>=</span> <span class=s1>&#39;&lt;a rel=&#34;license noopener&#34; title=&#34;国际许可(CC BY-NC-SA 4.0)&#34;href=&#34;https://creativecommons.org/licenses/by-nc-sa/4.0/&#34; target=&#34;_blank&#34;&gt;&#34;署名-非商业性使用-相同方式共享 4.0 国际&#34;&lt;/a&gt; 转载请保留作者及原文链接&#39;</span>     <span class=c># e.g. &#39;&lt;a rel=&#34;license noopener&#34; href=&#34;https://creativecommons.org/licenses/by-nc-nd/4.0/&#34; target=&#34;_blank&#34;&gt;CC BY-NC-ND 4.0&lt;/a&gt;&#39;</span>
+
+  <span class=nx>changyanAppid</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>        <span class=c># Changyan app id             # 畅言</span>
+  <span class=nx>changyanAppkey</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>       <span class=c># Changyan app key</span>
+
+  <span class=nx>livereUID</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>            <span class=c># LiveRe UID                  # 来必力</span>
+
+  <span class=nx>baiduPush</span> <span class=p>=</span> <span class=kc>false</span>        <span class=c># baidu push                  # 百度</span>
+  <span class=nx>baiduAnalytics</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>      <span class=c># Baidu Analytics</span>
+  <span class=nx>baiduVerification</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>   <span class=c># Baidu Verification</span>
+  <span class=nx>googleVerification</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>  <span class=c># Google Verification         # 谷歌</span>
+
+  <span class=c># Link custom CSS and JS assets</span>
+  <span class=c>#   (relative to /static/css and /static/js respectively)</span>
+  <span class=nx>customCSS</span> <span class=p>=</span> <span class=p>[]</span>
+  <span class=nx>customJS</span> <span class=p>=</span> <span class=p>[]</span>
+
+  <span class=nx>uglyURLs</span> <span class=p>=</span> <span class=kc>false</span>          <span class=c># please keep same with uglyurls setting</span>
+
+  <span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>publicCDN</span><span class=p>]</span>        <span class=c># load these files from public cdn                          # 启用公共CDN，需自行定义</span>
+    <span class=nx>enable</span> <span class=p>=</span> <span class=kc>true</span>
+    <span class=nx>jquery</span> <span class=p>=</span> <span class=s1>&#39;&lt;script src=&#34;https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js&#34; integrity=&#34;sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;&#39;</span>
+    <span class=nx>slideout</span> <span class=p>=</span> <span class=s1>&#39;&lt;script src=&#34;https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js&#34; integrity=&#34;sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;&#39;</span>
+    <span class=nx>fancyboxJS</span> <span class=p>=</span> <span class=s1>&#39;&lt;script src=&#34;https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js&#34; integrity=&#34;sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;&#39;</span>
+    <span class=nx>fancyboxCSS</span> <span class=p>=</span> <span class=s1>&#39;&lt;link rel=&#34;stylesheet&#34; href=&#34;https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css&#34; integrity=&#34;sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=&#34; crossorigin=&#34;anonymous&#34;&gt;&#39;</span>
+    <span class=nx>timeagoJS</span> <span class=p>=</span> <span class=s1>&#39;&lt;script src=&#34;https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js&#34; integrity=&#34;sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;&#39;</span>
+    <span class=nx>timeagoLocalesJS</span> <span class=p>=</span> <span class=s1>&#39;&lt;script src=&#34;https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js&#34; integrity=&#34;sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;&#39;</span>
+    <span class=nx>flowchartDiagramsJS</span> <span class=p>=</span> <span class=s1>&#39;&lt;script src=&#34;https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js&#34; integrity=&#34;sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt; &lt;script src=&#34;https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js&#34; integrity=&#34;sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;&#39;</span>
+    <span class=nx>sequenceDiagramsCSS</span> <span class=p>=</span> <span class=s1>&#39;&lt;link rel=&#34;stylesheet&#34; href=&#34;https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css&#34; integrity=&#34;sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF&#34; crossorigin=&#34;anonymous&#34;&gt;&#39;</span>
+    <span class=nx>sequenceDiagramsJS</span> <span class=p>=</span> <span class=s1>&#39;&lt;script src=&#34;https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js&#34; integrity=&#34;sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt; &lt;script src=&#34;https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js&#34; integrity=&#34;sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt; &lt;script src=&#34;https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js&#34; integrity=&#34;sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt; &lt;script src=&#34;https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js&#34; integrity=&#34;sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;&#39;</span>
+
+  <span class=c># Display a message at the beginning of an article to warn the readers that it&#39;s content may be outdated.</span>
+  <span class=c># 在文章开头显示提示信息，提醒读者文章内容可能过时。</span>
+  <span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>outdatedInfoWarning</span><span class=p>]</span>
+    <span class=nx>enable</span> <span class=p>=</span> <span class=kc>false</span>
+    <span class=nx>hint</span> <span class=p>=</span> <span class=mi>30</span>               <span class=c># Display hint if the last modified time is more than these days ago.    # 如果文章最后更新于这天数之前，显示提醒</span>
+    <span class=nx>warn</span> <span class=p>=</span> <span class=mi>180</span>              <span class=c># Display warning if the last modified time is more than these days ago.    # 如果文章最后更新于这天数之前，显示警告</span>
+
+  <span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>gitment</span><span class=p>]</span>          <span class=c># Gitment is a comment system based on GitHub issues. see https://github.com/imsun/gitment</span>
+    <span class=nx>owner</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>              <span class=c># Your GitHub ID</span>
+    <span class=nx>repo</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>               <span class=c># The repo to store comments</span>
+    <span class=nx>clientId</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>           <span class=c># Your client ID</span>
+    <span class=nx>clientSecret</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>       <span class=c># Your client secret</span>
+
+  <span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>utterances</span><span class=p>]</span>       <span class=c># https://utteranc.es/</span>
+    <span class=nx>owner</span> <span class=p>=</span> <span class=s2>&#34;longyue0521&#34;</span>              <span class=c># Your GitHub ID</span>
+    <span class=nx>repo</span> <span class=p>=</span> <span class=s2>&#34;longyue0521.github.io&#34;</span>               <span class=c># The repo to store comments</span>
+
+  <span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>gitalk</span><span class=p>]</span>           <span class=c># Gitalk is a comment system based on GitHub issues. see https://github.com/gitalk/gitalk</span>
+    <span class=nx>owner</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>              <span class=c># Your GitHub ID</span>
+    <span class=nx>repo</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>               <span class=c># The repo to store comments</span>
+    <span class=nx>clientId</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>           <span class=c># Your client ID</span>
+    <span class=nx>clientSecret</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>       <span class=c># Your client secret</span>
+
+  <span class=c># Valine.</span>
+  <span class=c># You can get your appid and appkey from https://leancloud.cn</span>
+  <span class=c># more info please open https://valine.js.org</span>
+  <span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>valine</span><span class=p>]</span>
+    <span class=nx>enable</span> <span class=p>=</span> <span class=kc>false</span>
+    <span class=nx>appId</span> <span class=p>=</span> <span class=s1>&#39;你的appId&#39;</span>
+    <span class=nx>appKey</span> <span class=p>=</span> <span class=s1>&#39;你的appKey&#39;</span>
+    <span class=nx>notify</span> <span class=p>=</span> <span class=kc>false</span>  <span class=c># mail notifier , https://github.com/xCss/Valine/wiki</span>
+    <span class=nx>verify</span> <span class=p>=</span> <span class=kc>false</span> <span class=c># Verification code</span>
+    <span class=nx>avatar</span> <span class=p>=</span> <span class=s1>&#39;mm&#39;</span>
+    <span class=nx>placeholder</span> <span class=p>=</span> <span class=s1>&#39;说点什么吧...&#39;</span>
+    <span class=nx>visitor</span> <span class=p>=</span> <span class=kc>false</span>
+
+  <span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>flowchartDiagrams</span><span class=p>]</span><span class=c># see https://blog.olowolo.com/example-site/post/js-flowchart-diagrams/</span>
+    <span class=nx>enable</span> <span class=p>=</span> <span class=kc>false</span>
+    <span class=nx>options</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>
+
+  <span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>sequenceDiagrams</span><span class=p>]</span> <span class=c># see https://blog.olowolo.com/example-site/post/js-sequence-diagrams/</span>
+    <span class=nx>enable</span> <span class=p>=</span> <span class=kc>false</span>
+    <span class=nx>options</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>            <span class=c># default: &#34;{theme: &#39;simple&#39;}&#34;</span>
+
+  <span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>busuanzi</span><span class=p>]</span>         <span class=c># count web traffic by busuanzi                             # 是否使用不蒜子统计站点访问量</span>
+    <span class=nx>enable</span> <span class=p>=</span> <span class=kc>false</span>
+    <span class=nx>siteUV</span> <span class=p>=</span> <span class=kc>true</span>
+    <span class=nx>sitePV</span> <span class=p>=</span> <span class=kc>true</span>
+    <span class=nx>pagePV</span> <span class=p>=</span> <span class=kc>true</span>
+
+  <span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>reward</span><span class=p>]</span>                                         <span class=c># 文章打赏</span>
+    <span class=nx>enable</span> <span class=p>=</span> <span class=kc>false</span>
+    <span class=nx>wechat</span> <span class=p>=</span> <span class=s2>&#34;/path/to/your/wechat-qr-code.png&#34;</span>           <span class=c># 微信二维码</span>
+    <span class=nx>alipay</span> <span class=p>=</span> <span class=s2>&#34;/path/to/your/alipay-qr-code.png&#34;</span>           <span class=c># 支付宝二维码</span>
+
+  <span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>social</span><span class=p>]</span>                                         <span class=c># 社交链接</span>
+    <span class=nx>a-email</span> <span class=p>=</span> <span class=s2>&#34;mailto:longyueli0521@gmail.com&#34;</span>
+    <span class=c>#b-stack-overflow = &#34;http://localhost:1313&#34;</span>
+    <span class=c>#c-twitter = &#34;http://localhost:1313&#34;</span>
+    <span class=c>#d-facebook = &#34;http://localhost:1313&#34;</span>
+    <span class=c>#e-linkedin = &#34;http://localhost:1313&#34;</span>
+    <span class=c>#f-google = &#34;http://localhost:1313&#34;</span>
+    <span class=nx>g-github</span> <span class=p>=</span> <span class=s2>&#34;http://github.com/longyue0521&#34;</span>
+    <span class=nx>h-weibo</span> <span class=p>=</span> <span class=s2>&#34;https://weibo.com/longyue521&#34;</span>
+    <span class=c>#i-zhihu = &#34;http://localhost:1313&#34;</span>
+    <span class=c>#j-douban = &#34;http://localhost:1313&#34;</span>
+    <span class=c>#k-pocket = &#34;http://localhost:1313&#34;</span>
+    <span class=c>#l-tumblr = &#34;http://localhost:1313&#34;</span>
+    <span class=c>#m-instagram = &#34;http://localhost:1313&#34;</span>
+    <span class=c>#n-gitlab = &#34;http://localhost:1313&#34;</span>
+    <span class=nx>o-bilibili</span> <span class=p>=</span> <span class=s2>&#34;https://space.bilibili.com/86465982&#34;</span>
+
+<span class=c># See https://gohugo.io/about/hugo-and-gdpr/</span>
+<span class=p>[</span><span class=nx>privacy</span><span class=p>]</span>
+  <span class=p>[</span><span class=nx>privacy</span><span class=p>.</span><span class=nx>googleAnalytics</span><span class=p>]</span>
+    <span class=nx>anonymizeIP</span> <span class=p>=</span> <span class=kc>true</span>      <span class=c># 12.214.31.144 -&gt; 12.214.31.0</span>
+  <span class=p>[</span><span class=nx>privacy</span><span class=p>.</span><span class=nx>youtube</span><span class=p>]</span>
+    <span class=nx>privacyEnhanced</span> <span class=p>=</span> <span class=kc>true</span>
+
+<span class=c># see https://gohugo.io/getting-started/configuration-markup</span>
+<span class=p>[</span><span class=nx>markup</span><span class=p>]</span>
+  <span class=p>[</span><span class=nx>markup</span><span class=p>.</span><span class=nx>tableOfContents</span><span class=p>]</span>
+    <span class=nx>startLevel</span> <span class=p>=</span> <span class=mi>1</span>
+  <span class=p>[</span><span class=nx>markup</span><span class=p>.</span><span class=nx>goldmark</span><span class=p>.</span><span class=nx>renderer</span><span class=p>]</span>
+    <span class=nx>unsafe</span> <span class=p>=</span> <span class=kc>true</span>
+
+<span class=c># 将下面这段配置取消注释可以使 hugo 生成 .md 文件</span>
+<span class=c># Uncomment these options to make hugo output .md files.</span>
+<span class=c>#[mediaTypes]</span>
+<span class=c>#  [mediaTypes.&#34;text/plain&#34;]</span>
+<span class=c>#    suffixes = [&#34;md&#34;]</span>
+<span class=c>#</span>
+<span class=c>#[outputFormats.MarkDown]</span>
+<span class=c>#  mediaType = &#34;text/plain&#34;</span>
+<span class=c>#  isPlainText = true</span>
+<span class=c>#  isHTML = false</span>
+<span class=c>#</span>
+<span class=c>#[outputs]</span>
+<span class=c>#  home = [&#34;HTML&#34;, &#34;RSS&#34;]</span>
+<span class=c>#  page = [&#34;HTML&#34;, &#34;MarkDown&#34;]</span>
+<span class=c>#  section = [&#34;HTML&#34;, &#34;RSS&#34;]</span>
+<span class=c>#  taxonomy = [&#34;HTML&#34;, &#34;RSS&#34;]</span>
+<span class=c>#  taxonomyTerm = [&#34;HTML&#34;]</span>
+
+</code></pre></td></tr></table></div></div><h2 id=修改配色>修改配色</h2><p>修改<a href=https://github.com/olOwOlo/hugo-theme-even>Even</a>主题配色需要修改<code>even/assets/sass/_variables.scss</code>文件中相关变量的值。</p><p>在Github Action工作流配置文件<code>.github/workflows/gh-pages.yml</code>中添如下内容使<strong>修改配色</strong>自动化。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-yaml data-lang=yaml><span class=c># Step 4 - Change theme/even&#39;s color</span><span class=w>
+</span><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Change color of even theme to Mint Green</span><span class=w>
+</span><span class=w>  </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=l>sed -i &#34;0,/&#39;Default&#39;/{s/&#39;Default&#39;/&#39;Mint Green&#39;/}&#34; ./themes/even/assets/sass/_variables.scss</span><span class=w>
+</span><span class=w>      
+</span><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Change color of code background to Mint Green</span><span class=w>
+</span><span class=w>  </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=l>sed -i &#34;0,/f5f5f5/{s/f5f5f5/eaf5e56c/}&#34; ./themes/even/assets/sass/_variables.scss</span><span class=w>
+</span><span class=w>    
+</span><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Change summary of all post to Mint Green</span><span class=w>
+</span><span class=w>  </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=l>sed -i &#34;0,/danger/{s/danger/success/}&#34; ./content/post/*.md</span><span class=w>
+</span></code></pre></td></tr></table></div></div><h2 id=添加评论>添加评论</h2><ul><li>需要在<strong>远程博客库</strong><code>&lt;username>.github.io</code>上安装 <a href=https://github.com/apps/utterances>utterances app</a></li><li><a href=https://blog.eric7.site/2020/01/05/comment>https://blog.eric7.site/2020/01/05/comment</a></li><li><a href=https://utteranc.es>https://utteranc.es</a></li><li><a href=https://nusr.github.io/post/2019/2019-05-04-utterances-introduce>https://nusr.github.io/post/2019/2019-05-04-utterances-introduce</a></li></ul><h2 id=定制域名>定制域名</h2><h3 id=修改工作流文件>修改工作流文件</h3><p>修改Github Action工作流配置文件<code>.github/workflow/gh-pages.yml</code>添加<code>CNAME</code>文件。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
